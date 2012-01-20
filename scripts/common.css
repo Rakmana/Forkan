@@ -1,0 +1,424 @@
+/**
+* @version $Id: common.css 9853 2009-03-25 15:43:29Z my2cha$
+ * @package  wapl
+ * @link http://www.Atallah.tk/
+ * @author     Khedrane Atallah <info@Atallah.tk>
+ * @copyright  (C) 2003 - 2009 Khedrane Atallah
+ * @license    http://gnu.org/copyleft/gpl.html GNU GPL
+ * @version 1.0
+ 
+ */
+ 
+/*--------------------------------------------------------------------------------------*/
+/* HTML Objects style*/
+
+/*
+input, textarea,select {
+	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+	color: #333;
+	font-size: 11px;
+	padding: 3px;
+	border: 1px solid #777;
+	background:#F3F3F3;
+}
+input:hover, textarea:hover{
+	background:#F7F7F7;
+}
+input[text]:focus, textarea:focus,select:focus{
+	background:Yellow;
+	//color:<?=registry::get('clr-header')?>;
+	//font:bold 12px tahoma;
+}*/
+
+input[type=button], input.submit , .button, .jbutton {
+	background-color:#F70;
+	border: 1px solid rgb(223,118,44);
+    outline: none;
+	margin: 5px;
+	/*display:block;*/
+	padding:5px 10px;
+	/*width:75px;*/
+	text-align:center;
+	color:#fff;
+	font:bold 11px tahoma;
+	text-decoration:none;
+	cursor : hand;
+	cursor : pointer;
+	/* styling for chrome */
+	background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.25, rgb(223,118,44)),
+    color-stop(0.63, rgb(255,154,71))
+	);
+	/* styling for firefox */
+	background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(223,118,44) 25%,
+    rgb(255,154,71) 63%
+
+	);
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	text-shadow:1px 1px 0 #de6916;
+
+}
+input[type=button]:hover, input.submit:hover , .button:hover, .jbutton:hover {
+    
+	background-color:#F90;
+	border: 1px solid rgb(223,118,44);
+    outline: none;
+	color:#EEE;
+	text-shadow:none;
+/* styling for chrome */
+	background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.25, rgb(255,154,71)),
+    color-stop(0.63, rgb(223,118,44))
+	);
+	/* styling for firefox */
+	background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(255,154,71) 25%,
+    rgb(223,118,44) 63%
+
+	);
+
+}
+ 
+*html hr {border: 1px inset #555; height:1px;}
+/*btrack div*/
+.console {
+position:absolute;
+margin: 1px;
+height:250px;width:390px;
+overflow: auto;
+background: #000;
+border: 2px solid #777;
+color : lime;
+font-size:10px; 
+text-align: left;
+direction:ltr;
+z-index:1001;}
+
+.trans { 
+filter:			alpha(Opacity=70);
+-moz-opacity:	0.7;
+-khtml-opacity : 0.7;
+opacity : 0.7;
+}
+.syslink{
+cursor : hand;
+cursor : pointer;
+}
+.syslink:hover, .syslink .hover{
+color : #F60;
+}
+
+/*********************************************************************/
+/* button and sign style*/
+.btn, .sgn, .sgng{
+	display:inline-block;
+	/*border:1px solid #333;*/
+	position:relative;
+	margin:auto 1px;padding:0 8px;
+	height:15px !important;    
+}
+.btn {
+	background-image: url(<?=form::mlink('img','media/ui-grey.png')?>);
+	cursor : hand;cursor : pointer;}
+.sgn {
+	background-image: url(<?=form::mlink('img','media/ui-colorized.png')?>);
+}    
+.sgng {
+	background-image: url(<?=form::mlink('img','media/ui-grey.png')?>);
+ }
+ 
+.jnomlogo{
+	display:inline-block;
+	background-image: url(<?=form::mlink('img','jnom.png')?>);
+	margin:1px;padding:0 10px;
+	height:21px !important;
+	cursor : hand;cursor : pointer;}
+
+.btn:hover, .btn .hover{
+background-image: url(<?=form::mlink('img','media/ui-colorized.png')?>);}
+/*****************[signification]***************/
+.s-tip,.s-help{background-position: -128px -81px;}/*ligntning*/
+.s-warn,.s-notic{background-position: 0 -96px; }/*wanring*/
+.s-error,.s-alert{background-position:  -96px -32px; }/*error*/
+.s-stop,.s-critic,.s-emrg{background-position:  -96px -17px; }/*stop*/
+.s-info{background-position:  -16px -97px; }/*info*/
+.s-ok,.s-debug{background-position:  -112px -33px; }/*ok yes*/
+.s-unknown{background-position:  -129px -33px; }/*question mark*/
+/*************************************************/
+.b-exit{background-position:  -81px -82px; }/*X exit*/
+.b-del{background-position:  -16px -1px; }/*trash*/
+.b-lop{background-position:  -16px -51px; }/*loop search*/
+.b-loop{background-position:  0px -17px; }/*loop search*/
+.b-time{background-position:  -81px -65px; }/*clock*/
+.b-like{background-position:  -144px -97px; }/*hand like*/
+.b-add{background-position:  -32px -82px; }/*plus (+) */
+.b-lock{background-position:  -32px -1px; }/*lock*/
+.b-unlock{background-position:  -48px -1px;}/*unlock*/
+.b-info{background-position:  -16px -97px; }/*info*/
+.b-set0{background-position:  -16px -17px; }/*setting*/
+.b-sets{background-position:  -33px -17px; }/*settings*/
+.b-set{background-position:  -65px -65px; }/*pen*/
+.b-kom{background-position:  -129px -50px; }/*comment*/
+.b-ok{background-position:  -32px -97px; }/*yes ok*/
+.b-flg{background-position:  -16px -65px; }/*flag*/
+.b-stp{background-position:  0 -81px;}/*stop*/
+.b-ply{background-position:  0 -113px; }/*play*/
+.b-arr_right{background-position:  -33px -113px; }/*next*/
+.b-arr_left{background-position:  -48px -113px; }/*prev*/
+.b-ejc{background-position:  -112px -113px; }/*eject*/
+.b-rss{background-position:  -144px -33px; }/*rss*/
+.b-rdf{background-position:  -48px -97px; }/*round full*/
+.b-rde{background-position:  -64px -97px; }/*round empty*/
+.b-prt{background-position:  0px 0px; }/*printer*/
+.b-pdf{background-position:  -32px -49px; }/*pdf*/
+.b-usr{background-position:  -144px -50px; }/*user*/
+.b-att{background-position:  -129px -17px; }/*attachment*/
+.b-rel{background-position:  -129px 0; }/*reload*/
+.b-vcard{background-position:  -33px -33px; }/*vcard*/
+.b-link{background-position:  -81px -17px; }/*link*/
+
+.likers {font: bold 9px tahoma;color:#777;display:inline-block;height:auto !important;width:auto !important;padding:1px;}
+* html { /* keeps the nav from jumping in IE6 */
+background-image:url(fake-image.jpg); /* use a fake image */
+}
+* html .fixed {  /* position fixed for IE6 */
+z-index: 107;
+position:absolute;
+top:expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+'px'); 
+left:expression(((e=document.documentElement.scrollLeft)?e:document.body.scrollLeft)+'px');
+width:expression(((e=document.documentElement.clientWidth)?e:document.body.clientWidth)+'px');
+/*text-align:center;*/
+}
+.fixed{
+	z-index: 107;
+	position: fixed;
+    top:0%;
+	left: 0%;
+	width: 100%;
+	/*text-align:center;*/
+}
+
+/* alert boxes and message*/
+html .notify{
+	/*clear: both;*/
+    padding:5px;
+    margin:5px 8px;
+    text-align:center;
+    font-size:12px;
+	font-weight:bold !important;
+	font-family:tahoma;
+	z-index:1007;
+}
+html .tip {
+    border:solid 1px #AAA;
+    border-<?=txt('align2')?>:solid 10px #AAA;
+    background:#F0F0F0;
+    color:#777;
+}
+html .info {
+    border:solid 1px #09F;
+    border-<?=txt('align2')?>:solid 10px #09F;
+    background:#AEF;
+    color:#07F;
+}
+
+html .warn, html .error, html .notic {
+    border:solid 1px #F90;
+    border-<?=txt('align2')?>:solid 10px #F90;
+    background:#FFC;
+    color:#F90;
+}
+html .alert, html .critic, html .emrg {
+    border:solid 1px #d23;
+    border-<?=txt('align2')?>:solid 10px #d23;
+    background:#fAA;
+    color:#b12;
+}
+html .ok, html .debug {
+    border:solid 1px #093;
+    border-<?=txt('align2')?>:solid 10px #093;
+    background:#9D5;
+    color:#073;
+}
+html .help {
+    border:solid 1px #E66;
+    border-<?=txt('align2')?>:solid 10px #E66;
+    background:#Fdd;
+    color:#E66;
+}
+
+/*************************************************************************************************/
+
+.tipsy { padding: 5px; font: bold 10px tahoma;/* opacity: 0.7; filter: alpha(opacity=70);*/ background-repeat: no-repeat;  background-image: url(<?=form::mlink('img','media/tipsy.gif')?>); }
+  .tipsy-inner { direction:<?=txt('dir')?>;padding: 5px 8px 4px 8px; background-color: #555; color: #F7FDFC; max-width: 200px; text-align: center; }
+  .tipsy-inner { border:1px solid black;-moz-border-radius:3px; -webkit-border-radius:3px; }
+  .tipsy-north { background-position: top center; }
+  .tipsy-south { background-position: bottom center; }
+  .tipsy-east { background-position: right center; }
+  .tipsy-west { background-position: left center; }
+
+
+/*################################################################################*/
+
+.boxy-wrapper { position: absolute; max-width: 600px;width:auto;}
+.boxy-wrapper.fixed { position: fixed; }
+
+  /* Modal */
+  
+  .boxy-modal-blackout { position: absolute; background-color: black; left: 0; top: 0; }
+  
+  /* Border */
+
+  .boxy-wrapper { empty-cells: show; }
+	.boxy-wrapper .top-left,
+	.boxy-wrapper .top-right,
+	.boxy-wrapper .bottom-right,
+	.boxy-wrapper .bottom-left { width: 10px; height: 10px; padding: 0 }
+	
+	.boxy-wrapper .top-<?=txt('align')?> { background: url('<?=form::mlink('img','media/boxy-nw.png')?>'); }
+	.boxy-wrapper .top-<?=txt('align2')?>  { background: url('<?=form::mlink('img','media/boxy-ne.png')?>'); }
+	.boxy-wrapper .bottom-<?=txt('align2')?>  { background: url('<?=form::mlink('img','media/boxy-se.png')?>'); }
+	.boxy-wrapper .bottom-<?=txt('align')?>  { background: url('<?=form::mlink('img','media/boxy-sw.png')?>'); }
+	
+	/* IE6+7 hacks for the border. IE7 should support this natively but fails in conjuction with modal blackout bg. */
+	/* NB: these must be absolute paths or URLs to your images */
+	.boxy-wrapper .top-<?=txt('align')?>  { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?=form::mlink('img','media/boxy-nw.png')?>'); }
+	.boxy-wrapper .top-<?=txt('align2')?>  { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?=form::mlink('img','media/boxy-ne.png')?>'); }
+	.boxy-wrapper .bottom-<?=txt('align2')?>  { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?=form::mlink('img','media/boxy-se.png')?>'); }
+	.boxy-wrapper .bottom-<?=txt('align')?>  { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?=form::mlink('img','media/boxy-sw.png')?>'); }
+	
+	.boxy-wrapper .top,
+	.boxy-wrapper .bottom { height: 10px; background-color: black; opacity: 0.6; filter: alpha(opacity=60); padding: 0 }
+	
+	.boxy-wrapper .left,
+	.boxy-wrapper .right { width: 10px; background-color: black; opacity: 0.6; filter: alpha(opacity=60); padding: 0 }
+	
+	/* Title bar */
+	
+	.boxy-wrapper .title-bar { background-color: #FD0; padding: 6px; position: relative; }
+	  .boxy-wrapper .title-bar.dragging { cursor: move; }
+	    .boxy-wrapper .title-bar h2 { font-size: 10px; color: black; line-height: 1; margin: 0; padding: 0; font-weight: bold; }
+	    .boxy-wrapper .title-bar .close {text-decoration: none; color: black; position: absolute; top: 6px; <?=txt('align2')?> : 6px; font-size: 90%; line-height: 1; }
+		
+	/* Content Region */
+	
+	.boxy-inner { background-color: white; padding: 0 }
+	.boxy-content { padding: 15px; }
+	
+	/* Question Boxes */
+
+    .boxy-wrapper .question { width: 350px; min-height: 80px; }
+    .boxy-wrapper .answers { text-align: <?=txt('align2')?>; }
+/* -------------------------------------------------------------------------*/
+
+/* Caution! Ensure accessibility in print and other media types... */
+@media projection, screen { /* Use class for showing/hiding tab content, so that visibility can be better controlled in different media types... */
+    .tabs-hide {
+        display: none;
+    }
+}
+
+/* Hide useless elements in print layouts... */
+@media print {
+    .tabs-nav {
+        display: none;
+    }
+}
+
+/* Skin */
+.tabs-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 4px;
+}
+.tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+    display: block;
+    clear: both;
+    content: " ";
+}
+.tabs-nav li {
+    float: left;
+    margin: 0 0 0 1px;
+    min-width: 84px; /* be nice to Opera */
+}
+.tabs-nav a, .tabs-nav a span {
+    display: block;
+    padding: 0 10px;
+    background: url('<?=form::mlink('img','media/tab.png')?>') no-repeat;
+    text-decoration: none;
+}
+.tabs-nav a {
+    position: relative;
+    top: 1px;
+    z-index: 2;
+    padding-left: 0;
+    color: #777;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap; /* required in IE 6 */    
+}
+.tabs-nav .tabs-selected a {
+    color: #000;
+}
+.tabs-nav .tabs-selected a, .tabs-nav a:hover, .tabs-nav a:focus, .tabs-nav a:active {
+    background-position: 100% -150px;
+    text-decoration: none;
+    outline: 0; /* prevent dotted border in Firefox */
+}
+.tabs-nav a, .tabs-nav .tabs-disabled a:hover, .tabs-nav .tabs-disabled a:focus, .tabs-nav .tabs-disabled a:active {
+    background-position: 100% -100px;
+}
+.tabs-nav a span {
+    width: 64px; /* IE 6 treats width as min-width */
+    min-width: 64px;
+    height: 18px; /* IE 6 treats height as min-height */
+    min-height: 18px;
+    padding-top: 6px;
+    padding-right: 0;
+}
+*>.tabs-nav a span { /* hide from IE 6 */
+    width: auto;
+    height: auto;
+}
+.tabs-nav .tabs-selected a span {
+    padding-top: 7px;
+}
+.tabs-nav .tabs-selected a span, .tabs-nav a:hover span, .tabs-nav a:focus span, .tabs-nav a:active span {
+    background-position: 0 -50px;
+}
+.tabs-nav a span, .tabs-nav .tabs-disabled a:hover span, .tabs-nav .tabs-disabled a:focus span, .tabs-nav .tabs-disabled a:active span {
+    background-position: 0 0;
+}
+.tabs-nav .tabs-selected a:link, .tabs-nav .tabs-selected a:visited, .tabs-nav .tabs-disabled a:link, .tabs-nav .tabs-disabled a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
+    cursor: text;
+}
+.tabs-nav a:hover, .tabs-nav a:focus, .tabs-nav a:active { /* @ Opera, we need to be explicit again here now... */
+    cursor: pointer;
+}
+.tabs-nav .tabs-disabled {
+    opacity: 0.4;
+}
+.tabs-container {
+    border-top: 1px solid #777;
+    padding: 1em 8px;
+    background: #fff; /* declare background color for container to avoid distorted fonts in IE while fading */
+}
+.tabs-loading em {
+    padding: 0 0 0 20px;
+    /*background: url(loading.gif) no-repeat 0 50%;*/
+}
+

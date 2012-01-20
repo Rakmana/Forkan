@@ -1,0 +1,61 @@
+<?php
+$pageWidth  = '850';	
+$pageHeight = '400';
+    
+    
+?>
+
+@font-face {
+	font-family: 'raky';
+	src: url('<?=KPUB.'fonts'.SH.'jvolt.eot'?>');
+	src: url('<?=KPUB.'fonts'.SH.'jvolt.eot?#iefix'?>') format('embedded-opentype');
+	
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
+* { margin:0; padding:0;}
+html, body { height:100%; }
+
+#content{
+}
+
+#overAya{
+	width:99% !important;
+	/*height:78% !important;*/
+}
+
+#tafseer{
+
+	width:99% !important;
+
+}
+
+
+.button, .jbutton {
+	background-color:#F70;
+	border: 1px outset rgb(223,118,44);
+    outline: none;
+	margin: 5px;
+	padding:5px 10px;
+	text-align:center;
+	color:#fff;
+	font:bold 11px tahoma;
+	text-decoration:none;
+	cursor : hand;
+	cursor : pointer;
+
+}
+.button:hover, .jbutton:hover {
+    
+	background-color:#F90;
+	border: 1px otuset rgb(223,118,44);
+    outline: none;
+	color:#EEE;
+	text-shadow:none ;
+
+}
+.blk .lbl,.blk input,.blk select,.blk span{display:inline;width:auto;}
+.blk .lbl{text-align:<?=txt('align2')?>;margin:2px;width:30%;}

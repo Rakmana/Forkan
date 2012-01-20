@@ -1,0 +1,30 @@
+/*<style type="text/css" id="fonts">
+	@font-face {
+	font-family: 'p1';
+	src: url('/static/fonts/compressed/eot/p1.eot?#iefix') format('embedded-opentype'),
+	     url('/static/fonts/woff/p1.woff')                 format('woff'),
+	     url('/static/fonts/compressed/ttf/p1.ttf')        format('truetype'),
+	     url('/static/fonts/compressed/svg/p1.svg#p1')    format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.p1 {
+	font-family: 'p1';
+}
+
+</style>*/
+
+@fonta-face{
+	font-family: 'magreb';
+	src: url('/static/fonts/compressed/eot/p1.eot?#iefix') format('embedded-opentype'),
+	     url('/static/fonts/woff/p1.woff')                 format('woff'),
+	     url('/static/fonts/compressed/ttf/p1.ttf')        format('truetype'),
+	     url('/static/fonts/compressed/svg/p1.svg#p1')    format('svg');
+	font-weight: normal;
+	font-style: normal;    
+    
+}
+
+        
+        
+        

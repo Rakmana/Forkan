@@ -1,0 +1,4 @@
+[03-Oct-2011 09:54:47] PHP Parse error:  syntax error, unexpected '{' in D:\xampp\htdocs\jsap\core\form.php on line 694
+[04-Oct-2011 16:56:42] PHP Parse error:  syntax error, unexpected T_STRING in D:\xampp\htdocs\jsap\applications\grh\contrat.php on line 58
+[04-Oct-2011 16:57:22] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE in D:\xampp\htdocs\jsap\applications\grh\CEmploi.grh.php on line 188
+[04-Oct-2011 17:04:02] PHP Parse error:  syntax error, unexpected ';' in D:\xampp\htdocs\jsap\applications\grh\CEmploi.grh.php on line 141
