@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registry version="1.0" title="Base Registry" author="rohff7@gmail.com" date="03/12/2010">
+	<key type="bol" ui="0" name="installed" title="is installe or not yet">on</key>
+	<key type="bol" ui="1" name="error_php" title="Show PHP errors">on</key>
+	<key type="bol" ui="1" name="error_wapl" title="Show WAPL errors">on</key>
+	<key type="bol" ui="1" name="error_mysql" title="Show MySQL errors">on</key>
+	<key type="bol" ui="1" name="error_js" title="Show javascript errors">on</key>
+	<key type="bol" ui="1" name="error_konfig" title="Show Konfig errors">on</key>
+	<key type="bol" ui="0" name="logging" title="Enable logging system">on</key>
+	<key type="str" ui="1" name="theme" title="Used Theme">raky</key>
+	<key type="str" ui="1" name="lang" title="Used Language">AR-DZ</key>
+	<key type="str" ui="1" name="siteTitle" title="Site Title">الفرقان</key>
+	<key type="str" ui="1" name="version" title="Site version">1.0</key>
+	<key type="str" ui="1" name="siteSlogan" title="Site Slogan">نسخة القرآن الكريم على الويب</key>
+    <key type="str" ui="1" name="admin_email" title="Administrator Email">rohff7@gmail.com</key>	
+	<key type="bol" ui="1" name="cache" title="Enable Cache system">off</key>
+	<key type="bol" ui="0" name="AjaxCache" title="Enable Cache system for Ajax response">on</key>
+	<key type="bol" ui="0" name="showChlog" title="Show ChangLog">on</key>
+	<key type="bol" ui="1" name="showProfiler" title="Show Profiler">on</key>
+	<key type="bol" ui="1" name="showPreloader" title="Show Preload Pregress">on</key>
+	<key type="bol" ui="1" name="showloadingDiv" title="Show loading spinner">on</key>
+	<key type="bol" ui="0" name="InactivityCheck" title="Check Inactivity on page">off</key>
+	<key type="num" ui="0" name="InactivityDelay" title="Inactivity Delay">1380000</key>
+	<key type="bol" ui="0" name="gzip" title="Compression GZIP">ofn</key>
+	<key type="bol" ui="0" name="permalink" title="Use Permalink">off</key>
+	<key type="str" ui="1" name="dbhost" title="DB Server">localhost</key>
+	<key type="str" ui="1" name="dbbase" title="DB Name">skybook</key>
+	<key type="str" ui="1" name="dbuser" title="DB Username">root</key>
+	<key type="str" ui="1" name="dbpass" title="DB Password">1723</key>
+</registry>

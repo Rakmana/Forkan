@@ -35,31 +35,20 @@ ini_set('session.use_only_cookies ', '1');
 //date_default_timezone_set("GMT+0");
 
 
-iconv_set_encoding("internal_encoding", "UTF-8");
-
 // mbstring is old and has it's functions around for older versions of PHP.
 // if mbstring is not loaded, we go into native mode.
 if (extension_loaded('mbstring')){	mb_internal_encoding('UTF-8');}
 
-/**
- * Browser Ajent detection : 4me No IE6.0
- */
-if (preg_match('/MSIE 6.0/', $_SERVER['HTTP_USER_AGENT'])) {
-    echo '<strong style="color:red">You are using MSIE 6.0 , Please Upgrade Your Browser!</strong>';
-    exit;
-}
-
+define('DS', DIRECTORY_SEPARATOR);
+define('KROT', dirname(__FILE__). DS);
 define('PSYS', KROT . 'core' . DS);
 define('PXML', KROT . 'core' . DS . 'store' . DS);
 define('PLNG', KROT . 'languages' . DS);
 define('PAPP', KROT . 'applications' . DS);
-define('PPLG', KROT . 'plugins' . DS);
 define('PJS',  KROT . 'scripts' . DS);
-
-define('PPUB', KROT . 'public' . DS);
 /**
  * this public addresses 4 security we make it into publik url format
- */
+ *//*
 define('KURL', 'http://' . $_SERVER['HTTP_HOST'] .(KBAS != '/' ?  SH . KBAS . SH : KBAS));
 define('KMDA', KURL . 'media' . SH);
 define('KAPP', KURL . 'applications' . SH);
@@ -67,20 +56,11 @@ define('KPLG', KURL . 'plugins' . SH);
 define('KURI', KURL . $_GET);
 define('KJS', KMDA . 'scripts' . SH);
 define('KPUB', KURL . 'public' . SH);
-define('KLNG', KURL . 'languages' . SH);
+define('KLNG', KURL . 'languages' . SH);*/
 //----------
 define('AMPER','&');//&amp;
 
-/***************************/
-btrack('Constants defined');
 
-
-/**
- * load the kernel file
- */
-require_once (PSYS . 'kernel.php');
-/*/////////////////////*/
-btrack('KERNEL Loaded');
 
 
 /**
@@ -98,84 +78,6 @@ if (version_compare(phpversion(), '5', '<') == true) {
 }
 /************************************************************/
 
-
-/**
- * Initialize base components
- */
-registry::init();
-konfig::init();
-
-/**
- * Set template variables
- */
-registry::set('notifications', '');
-registry::set('contents', '');
-
-
-/**
- * Disable php errors 
- */
-if (konfig::isOn('error_php')) {
-    error_reporting(E_ALL);
-} else
-    error_reporting(0);
-
-debugger::init();
-router::init();
-if (!router::ismediax())
-    session::init();
-
-
-if (!router::ismediax()){
-    dbase::init();
-    
-	if(!kore::isInstalled()) {
-		kore::install();
-	}
-	
-	};
-    
-user::init();
-
-
-/**
- * Get System default lang and theme 
- */
-$thm = konfig::get('theme');
-
-$lng = tools::Jet('lang','');
-
-if(($lng != 'NULL') AND tongue::islang($lng)){
-    session::jSetCookie('jlang',$lng);
-    registry::set('lang',$lng);
-}
-else{
-    $lng = (session::jGetCookie('jlang') != false)? session::jGetCookie('jlang') : konfig::get('lang');
-    registry::set('lang',$lng);
-}
-
-/**
- * Define paths and urls for lang and theme 
- */
-define('SKN', 'skins' . SH . $thm . SH); //acive Skin short url
-define('KSKN', KURL . 'skins' . SH . $thm . SH); //active Skin full url
-define('PSKN', KROT . 'skins' . DS . $thm . DS); //active Skin full path
-
-//--- check if a valid skin selected
-if(!flib::is_file(PSKN.'index.html.php')){
-    die('Skin file not loaded !! ');
-}
-btrack('SKN-selected: ' . $thm);
-btrack('LNG-selected: ' . $lng);
-
-/**
- * Initialize Language
- */
-tongue::init();
-
-
-/*/////////////////////*/
-btrack('Booting OK');
 
 
 ?>

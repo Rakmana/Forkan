@@ -1,4 +1,10 @@
 <?php
+define("WPL_RUN",1);
+//ob_start();
+
+// load bootstrap
+require_once('boot.php');
+
 // Define path to data folder
 define('DATA_PATH', realpath(dirname(__FILE__).'/data'));
 
@@ -7,14 +13,14 @@ $applications = array(
 	'APP001' => '28e336ac6c9423d946ba02d19c6a2632', //randomly generated app key 
 );
 //include our models
-include_once 'models/TodoItem.php';
+//include_once 'models/todo.php';
 
 //wrap the whole thing in a try-catch block to catch any wayward exceptions!
 try {
 	//*UPDATED*
 	//get the encrypted request
 	$enc_request = $_REQUEST['enc_request'];
-	
+
 	//get the provided app id
 	$app_id = $_REQUEST['app_id'];
 	
@@ -24,10 +30,12 @@ try {
 	}
 	
 	//decrypt the request
-	$params = json_decode(trim(mcrypt_decrypt( MCRYPT_RIJNDAEL_256, $applications[$app_id], base64_decode($enc_request), MCRYPT_MODE_ECB )));
-	
+	$params = json_decode(trim(base64_decode($enc_request)));
+	//var_dump($params);
+	//$params = json_decode(trim(mcrypt_decrypt( MCRYPT_RIJNDAEL_256, $applications[$app_id], base64_decode($enc_request), MCRYPT_MODE_ECB )));
+	    
 	//check if the request is valid by checking if it's an array and looking for the controller and action
-	if( $params == false || isset($params->controller) == false || isset($params->action) == false ) {
+	if( ($params == false) || (isset($params->controller) == false) || (isset($params->action) == false) ) {
 		throw new Exception('Request is not valid');
 	}
 	
@@ -36,7 +44,7 @@ try {
 	
 	//get the controller and format it correctly so the first
 	//letter is always capitalized
-	$controller = ucfirst(strtolower($params['controller']));
+	$controller = strtolower($params['controller']);
 	
 	//get the action and format it correctly so all the
 	//letters are not capitalized, and append 'Action'
@@ -51,6 +59,7 @@ try {
 	
 	//create a new instance of the controller, and pass
 	//it the parameters from the request
+	$controller = ucfirst($controller);
 	$controller = new $controller($params);
 	
 	//check if the action exists in the controller. if not, throw an exception.

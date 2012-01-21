@@ -2,10 +2,10 @@
 session_start();
 include_once 'apicaller.php';
 
-$apicaller = new ApiCaller('APP001', '28e336ac6c9423d946ba02d19c6a2632', 'http://localhost/simpletodo_api/');
+$apicaller = new ApiCaller('APP001', '28e336ac6c9423d946ba02d19c6a2632', APISERVER);
 
 $todo_items = $apicaller->sendRequest(array(
-	'controller' => 'todo',
+	'controller' => 'Forkane',
 	'action' => 'read',
 	'username' => $_SESSION['username'],
 	'userpass' => $_SESSION['userpass']
@@ -16,7 +16,8 @@ $todo_items = $apicaller->sendRequest(array(
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SimpleTODO</title>
+	<title>الفرقان</title>
+    <meta charset="utf-8">
 	
 	<link rel="stylesheet" href="css/reset.css" type="text/css" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
@@ -68,18 +69,18 @@ $todo_items = $apicaller->sendRequest(array(
 	<div class="topbar">
 		<div class="fill">
 			<div class="container">
-				<a class="brand" href="index.php">SimpleTODO</a>
+				<img src="forkan.png" /><a class="brand" href="index.php">الفرقان</a>
 			</div>
 		</div>
 	</div>
 	<div id="main" class="container">
 		<div class="textalignright marginbottom10">
-			<span id="newtodo" class="btn info">Create a new TODO item</span>
+			<span id="newtodo" class="btn info">إضافة</span>
 			<div id="newtodo_window" title="Create a new TODO item">
 				<form method="POST" action="new_todo.php">
-					<p>Title:<br /><input type="text" class="title" name="title" placeholder="TODO title" /></p>
-					<p>Date Due:<br /><input type="text" class="datepicker" name="due_date" placeholder="MM/DD/YYYY" /></p>
-					<p>Description:<br /><textarea class="description" name="description"></textarea></p>
+					<p>العنوان:<br /><input type="text" class="title" name="title" placeholder="TODO title" /></p>
+					<p>التاريخ:<br /><input type="text" class="datepicker" name="due_date" placeholder="MM/DD/YYYY" /></p>
+					<p>الوصف:<br /><textarea class="description" name="description"></textarea></p>
 					<div class="actions">
 						<input type="submit" value="Create" name="new_submit" class="btn primary" />
 					</div>
@@ -92,7 +93,7 @@ $todo_items = $apicaller->sendRequest(array(
 			<div>
 				<form method="POST" action="update_todo.php">
 				<div class="textalignright">
-					<a href="delete_todo.php?todo_id=<?php echo $todo->todo_id; ?>">Delete</a>
+					<a href="delete_todo.php?todo_id=<?php echo $todo->todo_id; ?>">حذف</a>
 				</div>
 				<div>
 					<p>Date Due:<br /><input type="text" id="datepicker_<?php echo $todo->todo_id; ?>" class="datepicker" name="due_date" value="<?php echo $todo->due_date; ?>" /></p>

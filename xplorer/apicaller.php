@@ -1,4 +1,7 @@
 <?php
+
+define("APISERVER",'http://localhost/forkan/api/');
+
 class ApiCaller
 {
 	//some variables for the object
@@ -19,10 +22,14 @@ class ApiCaller
 	//also encrypts the request, then checks
 	//if the results are valid
 	public function sendRequest($request_params)
-	{
+	{ 
+	   //wrap the whole thing in a try-catch block to catch any wayward exceptions!
+       try {
 		//encrypt the request parameters
-		$enc_request = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $this->_app_key, json_encode($request_params), MCRYPT_MODE_ECB));
-		
+		//$enc_request = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $this->_app_key, json_encode($request_params), MCRYPT_MODE_ECB));
+     	
+		$enc_request = base64_encode(json_encode($request_params));
+	        
 		//create the params array, which will
 		//be the POST parameters
 		$params = array();
@@ -35,16 +42,18 @@ class ApiCaller
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	
+        //var_dump($params);
 
 		//execute the request
-		$result = curl_exec($ch);
-		
+		$result_r = curl_exec($ch);
+
 		//json_decode the result
-		$result = @json_decode($result);
+		$result = @json_decode($result_r);
 		
 		//check if we're able to json_decode the result correctly
-		if( $result == false || isset($result->success) == false ) {
-			throw new Exception('Request was not correct');
+		if( ($result == false) || (isset($result->success) == false) ) {
+			throw new Exception('Request was not correct :'.($result_r));
 		}
 		
 		//if there was an error in the request, throw an exception
@@ -52,7 +61,19 @@ class ApiCaller
 			throw new Exception($result->errormsg);
 		}
 		
+        curl_close($ch);
+        
 		//if everything went great, return the data
 		return $result->data;
+        
+      } catch( Exception $e ) {
+	    //catch any exceptions and report the problem
+
+	    $GLOBALS['errors'][] = $e->getMessage();
+        return null;
+      }
+
+
+        
 	}
 }

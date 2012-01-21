@@ -2,7 +2,7 @@
 session_start();
 include_once 'apicaller.php';
 
-$apicaller = new ApiCaller('APP001', '28e336ac6c9423d946ba02d19c6a2632', 'http://localhost/simpletodo_api/');
+$apicaller = new ApiCaller('APP001', '28e336ac6c9423d946ba02d19c6a2632', APISERVER);
 
 $new_item = $apicaller->sendRequest(array(
 	'controller' => 'todo',
