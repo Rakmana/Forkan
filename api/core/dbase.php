@@ -10,7 +10,6 @@
 
    $GLOBALS['QUERIES_COUNT'] = 0;
    $GLOBALS['DBlinkID'] = 0;
-   $GLOBALS['konfig']['error_mysql'] = true;
 
 /**
 * DBASE
@@ -25,7 +24,7 @@ class dbase {
 	*
 	*/
 	public static function init(){
-	dbase::connect();
+	  dbase::connect();
 	}
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	/**
@@ -40,12 +39,14 @@ class dbase {
 		$pass = '1723';
 		$base = 'skybook';
         
-		$GLOBALS['DBlinkID'] = @mysqli_connect("$host","$user","$pass") or die("JBase::ConnectDB : <br />" .(($GLOBALS['konfig']['error_mysql'] != false )? (mysqli_connect_error()) : 'JME-'.mysqli_connect_errno()));
-		@mysqli_select_db($GLOBALS['DBlinkID'],"$base") or die(dbase::jError("JBase::SelectDB"));
+		$GLOBALS['DBlinkID'] = mysqli_connect("$host","$user","$pass") or die("JBase::ConnectDB : <br />" .(($GLOBALS['konfig']['error_mysql'] != false )? (mysqli_connect_error()) : 'JME-'.mysqli_connect_errno()));
+		
+		mysqli_select_db($GLOBALS['DBlinkID'],"$base") or die(dbase::jError("JBase::SelectDB"));
 		dbase::query("SET CHARACTER SET 'utf8'");
+
 		$GLOBALS['CONNECTED'] = true;
         return true;
-	}
+	} 
 	}
 
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -95,7 +96,7 @@ class dbase {
 		$GLOBALS['Query_ID'] = mysqli_query(dbase::getID(),$Query_String)or die(dbase::jError("JBase::Query => <small>".$Query_String."</small>\n"));
         
         $GLOBALS['QUERIES_COUNT']++ ;
-        @btrack('QRY Dbase Query °'.$GLOBALS['QUERIES_COUNT']);
+        //@btrack('QRY Dbase Query °'.$GLOBALS['QUERIES_COUNT']);
 		
         return $GLOBALS['Query_ID'];
 	}
@@ -108,14 +109,14 @@ class dbase {
 	*
 	*/
 	public static function jfetch($Query_string) {
-		$array = mysqli_fetch_array(dbase::query($Query_string));
+		$array = mysqli_fetch_assoc(dbase::query($Query_string));
 		//dbase::free();
 		return $array;
 	}
 	public static function fetch($Query_ID) {
 		if($Query_ID == "") $Query_ID=$GLOBALS['Query_ID'];
 
-		return mysqli_fetch_array($Query_ID);//or die
+		return mysqli_fetch_assoc($Query_ID);//or die
 	}
 	public static function jNum($Query_string) {
 		$num = mysqli_num_rows(dbase::query($Query_string));
@@ -135,7 +136,7 @@ class dbase {
 	mysqli_close($GLOBALS['DBlinkID']);
 	}
 	}
-    
+   
     dbase::init();
 
 ?>

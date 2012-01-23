@@ -19,11 +19,36 @@ class ForkanData
      * @param string $riwayaID
      * @return array [index,sura,aya,text,riwaya]
      */
-    public function getAya($ayaID,$riwayaID = '1'){
+    public static function getAya($ayaID, $ayaCount, $riwayaID = '1'){
         //index  sura  aya  text  riwaya  view  
-        $y = dbase::jfetch("SELECT q.* FROM quran q WHERE q.index = $ayaID and q.riwaya = $riwayaID");
+        $ret = array();
+        $q = dbase::query("SELECT q.* FROM quran q WHERE (q.index >= $ayaID AND q.index < ($ayaID+$ayaCount))  AND q.riwaya = $riwayaID");
+                
+        while ($y = mysqli_fetch_array($q,MYSQLI_NUM)){
+            $ret[] = $y;
+         
+        //echo "<pre>";var_dump($y);echo "</pre>";
+        }
+   
+        //var_dump($ret);     
         
-        return $y;
+        dbase::free($q);
+        
+        return (array)$ret;
+       
+    }
+
+    public static function getAyas($ayaID,$count,$riwayaID = '1'){
+        //index  sura  aya  text  riwaya  view  
+        $ret = array();
+
+        for($i = 0; $i < $count ;$i++){
+         $ret[$i+1] = self::getAya($ayaID+$i,$riwayaID);
+        //echo "<pre>";var_dump($y);echo "</pre>";
+        }
+        
+        
+        return $ret;
        
     }
     /**

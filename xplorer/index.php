@@ -1,17 +1,23 @@
 <?php
 session_start();
 
-$error = array();
+// mbstring is old and has it's functions around for older versions of PHP.
+// if mbstring is not loaded, we go into native mode.
+if (extension_loaded('mbstring')){	mb_internal_encoding('UTF-8');}
+
+$GLOBALS['errors'] = array();
 
 include_once 'apicaller.php';
 
-$apicaller = new ApiCaller('APP001', '28e336ac6c9423d946ba02d19c6a2632', APISERVER);
+$apicaller = new ApiCaller('28e336ac6c9423d946ba02d19c6a2632', APISERVER);
 
 $ayas = $apicaller->sendRequest(array(
-	'controller' => 'forkan',
-	'action' => 'read',
+	'cls' => 'forkan',
+	'act' => 'read',
 	'ayaID' => 1
 ));
+
+
 
 ?><!DOCTYPE html>
 <html dir="rtl">
@@ -36,7 +42,7 @@ $ayas = $apicaller->sendRequest(array(
 		.script("js/underscore-1.1.6.js")  
 		.script("js/backbone.js")   
 		.script("js/backbone-localstorage.js")   
-		.script("js/todos.js"); 
+		.script("js/forkan.js"); 
 	</script>
 	
 	<style>
@@ -101,7 +107,7 @@ $ayas = $apicaller->sendRequest(array(
 	<div class="topbar">
 		<div class="fill">
 			<div class="container">
-				<a class="brand" href="index.php"><img src="forkan.png" /></a>          
+				<a class="brand" href="index.php" style="width: 80px;height: 20px;background:url(forkan.png) center center no-repeat;" /></a>          
 				<ul class="nav">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="#about">About</a></li>
@@ -128,14 +134,15 @@ $ayas = $apicaller->sendRequest(array(
           <div class="span10">
            <div class="span9" style="text-align: right;">
            <ul>
-           <?php if(count($GLOBALS['errors'])> 0){foreach($GLOBALS['errors'] as $error): ?>
+           <?php
+           if(count($GLOBALS['errors'])> 0){foreach($GLOBALS['errors'] as $error): ?>
              <li><span class="label warning">Error</span><?php echo $error; ?></li>
 		   <?php endforeach;} ?>
            </ul>
            </div>
            <div id="todolist">
-			<?php if($ayas != null){foreach($ayas as $aya): ?>
-			<h3><a href="#"><?php echo $todo->title; ?></a></h3>
+			<?php if($ayas != null){foreach($ayas as $aya):?>
+			<span><?php echo $aya[3]; ?></span>  <span class="label success"><?php echo $aya[2]; ?></span>
 			<div>
 
 			</div>

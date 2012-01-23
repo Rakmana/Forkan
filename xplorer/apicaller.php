@@ -11,9 +11,9 @@ class ApiCaller
 	
 	//construct an ApiCaller object, taking an
 	//APP ID, APP KEY and API URL parameter
-	public function __construct($app_id, $app_key, $api_url)
+	public function __construct( $app_key, $api_url)
 	{
-		$this->_app_id = $app_id;
+		//$this->_app_id = $app_id;
 		$this->_app_key = $app_key;
 		$this->_api_url = $api_url;
 	}
@@ -28,14 +28,14 @@ class ApiCaller
 		//encrypt the request parameters
 		//$enc_request = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $this->_app_key, json_encode($request_params), MCRYPT_MODE_ECB));
      	
-		$enc_request = base64_encode(json_encode($request_params));
-	        
+		$enc_request = (json_encode($request_params));
+	 
+		//var_dump($enc_request);       
 		//create the params array, which will
 		//be the POST parameters
 		$params = array();
-		$params['enc_request'] = $enc_request;
-		$params['app_id'] = $this->_app_id;
-		
+		$params['byn'] = $enc_request;
+		$params['rmz'] = $this->_app_key;
 		//initialize and setup the curl handler
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->_api_url);
@@ -52,19 +52,19 @@ class ApiCaller
 		$result = @json_decode($result_r);
 		
 		//check if we're able to json_decode the result correctly
-		if( ($result == false) || (isset($result->success) == false) ) {
+		if( ($result == false) || (isset($result->st) == false) ) {
 			throw new Exception('Request was not correct :'.($result_r));
 		}
 		
 		//if there was an error in the request, throw an exception
-		if( $result->success == false ) {
-			throw new Exception($result->errormsg);
+		if( $result->st == false ) {
+			throw new Exception($result->er[0]);
 		}
 		
         curl_close($ch);
         
 		//if everything went great, return the data
-		return $result->data;
+		return $result->dt;
         
       } catch( Exception $e ) {
 	    //catch any exceptions and report the problem

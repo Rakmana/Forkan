@@ -1,6 +1,5 @@
 <?php
 
-
 //include our models
 include_once 'models/forkan.php';
 
@@ -16,10 +15,10 @@ class Forkan
 	public function readAction()
 	{
 		//read all the todo items while passing the username and password to authenticate
-		$items = ForkanData::getAya($this->_params['ayaID']);
-		
+		$items = ForkanData::getAya($this->_params['ayaID'],7);
+		//var_dump($items);
 		//return the list
-		return $items;
+		return  (array)$items;
 	}
 
 	
@@ -37,3 +36,5 @@ class Forkan
 		return $todo->toArray();
 	}
 }
+
+?>
