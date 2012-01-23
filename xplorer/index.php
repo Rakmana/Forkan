@@ -1,33 +1,12 @@
-<?php
-session_start();
-
-// mbstring is old and has it's functions around for older versions of PHP.
-// if mbstring is not loaded, we go into native mode.
-if (extension_loaded('mbstring')){	mb_internal_encoding('UTF-8');}
-
-$GLOBALS['errors'] = array();
-
-include_once 'apicaller.php';
-
-$apicaller = new ApiCaller('28e336ac6c9423d946ba02d19c6a2632', APISERVER);
-
-$ayas = $apicaller->sendRequest(array(
-	'cls' => 'forkan',
-	'act' => 'read',
-	'ayaID' => 1
-));
-
-
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html dir="rtl">
 <head>
 	<title>الفرقان</title>
     <meta charset="utf-8">
 	
-	<link rel="stylesheet" href="css/reset.css" type="text/css" />
-	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/todos.css" media="all" type="text/css"/>
+	<link rel="stylesheet" href="theme/raky/reset.css" type="text/css" />
+	<link rel="stylesheet" href="theme/raky/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="theme/raky/forkan.css" media="all" type="text/css"/>
 	
     <script src="js/LAB.js"></script>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -41,11 +20,45 @@ $ayas = $apicaller->sendRequest(array(
 		.script("js/jquery.tmpl.min.js")  
 		.script("js/underscore-1.1.6.js")  
 		.script("js/backbone.js")   
-		.script("js/backbone-localstorage.js")   
-		.script("js/forkan.js"); 
+		//.script("js/backbone-localstorage.js")   
+		.script("js/forkan.js") 
+		
+		.script("js/bootstrap-modal.js")
+    	.script("js/bootstrap-alerts.js")
+
+    	.script("js/bootstrap-twipsy.js")
+    	.script("js/bootstrap-popover.js")
+    	.script("js/bootstrap-dropdown.js")
+    	.script("js/bootstrap-scrollspy.js")
+    	.script("js/bootstrap-tabs.js")
+    	.script("js/bootstrap-buttons.js");
+
 	</script>
 	
 	<style>
+@font-face {
+	font-family: 'raky';
+	src: url('public/jvolt.eot');
+	src:local('me_quran'), 
+		url('public/jvolt.ttf') format('truetype');
+	
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+@font-face {
+	font-family: 'uthmanic';
+	src: url('public/uthmanicHafsv09.eot');
+	src: local('KFGQPC Uthman Taha Naskh'),
+		 url('public/uthmanicHafsv09.otf') format('opentype'),
+		 url('public/uthmanicHafsv09.woff') format('woff');
+	
+	font-weight: normal;
+	font-style: normal;
+}
+
+
       /* Override some defaults */
       html, body {
         background-color: #eee;
@@ -95,9 +108,11 @@ $ayas = $apicaller->sendRequest(array(
       .topbar .btn {
         border: 0;
       }
+	  
+
 	</style>    
 	<!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 
@@ -109,15 +124,12 @@ $ayas = $apicaller->sendRequest(array(
 			<div class="container">
 				<a class="brand" href="index.php" style="width: 80px;height: 20px;background:url(forkan.png) center center no-repeat;" /></a>          
 				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li class="active"><a href="/" data-placement="below" rel='twipsy' title="الصفحة الرئيسية">الرئيسية</a></li>
+					<li><a href="#about" data-placement="below" rel='twipsy' title="من نحن">من نحن</a></li>
+					<li><a href="#contact" data-placement="below" rel='twipsy' title="إتصل بنا">وصال</a></li>
 				</ul>
 				<form action="" class="pull-right">
-					<input class="input-small" type="text" placeholder="Username">
-			
-					<input class="input-small" type="password" placeholder="Password">
-					<button class="btn" type="submit">Sign in</button>
+					<input type="text" placeholder="Search">
 				</form>
 			</div>
 		</div>
@@ -132,40 +144,15 @@ $ayas = $apicaller->sendRequest(array(
         <div class="row">
           
           <div class="span10">
-           <div class="span9" style="text-align: right;">
-           <ul>
-           <?php
-           if(count($GLOBALS['errors'])> 0){foreach($GLOBALS['errors'] as $error): ?>
-             <li><span class="label warning">Error</span><?php echo $error; ?></li>
-		   <?php endforeach;} ?>
-           </ul>
-           </div>
-           <div id="todolist">
-			<?php if($ayas != null){foreach($ayas as $aya):?>
-			<span><?php echo $aya[3]; ?></span>  <span class="label success"><?php echo $aya[2]; ?></span>
-			<div>
 
-			</div>
-			<?php endforeach; }?>
-		</div>
-    <!-- Todo App Interface -->            
-    <div id="todoapp">
-
-      <div class="title">
-        <h1>Todos</h1>
-      </div>
+    <!-- Forkan App Interface -->            
+    <div id="forkanApp">
 
       <div class="content">
 
-        <div id="create-todo">
-          <input id="new-todo" placeholder="What needs to be done?" type="text" />
-          <span class="ui-tooltip-top" style="display:none;">Press Enter to save this task</span>
-        </div>
 
-        <div id="todos">
-          <input class="check mark-all-done" type="checkbox"/>
-          <label for="check-all">Mark all as complete</label>
-          <ul id="todo-list"></ul>
+        <div id="ipage">
+          <div id="iayas"></div>
         </div>
 
         <div id="todo-stats"></div>
@@ -182,7 +169,7 @@ $ayas = $apicaller->sendRequest(array(
             <h3>Secondary content</h3>
           </div>
         </div>
-      </div>
+      </div> <!-- /row -->
 
       <footer>
         <p>&copy; itkane.com 2012. by Jnom23.</p>
@@ -195,17 +182,11 @@ $ayas = $apicaller->sendRequest(array(
 
     <!-- Templates -->
 
-    <script type="text/template" id="item-template">
-      <div class="todo <%= done ? 'done' : '' %>">
-        <div class="display">
-          <input class="check" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
-          <label class="todo-content"><%= content %></label>
-          <span class="todo-destroy"></span>
-        </div>
-        <div class="edit">
-          <input class="todo-input" type="text" value="<%= content %>" />
-        </div>
-      </div>
+    <script type="text/template" id="aya-template">
+      <span data-placement="above" rel="popover" data-content="<%= text %>" class="iAya" id="y<%= index %>">
+        <%= text %>       
+      </span>
+	  <span class="label succes iAyaSep"><%= aya %></span>
     </script>
 
     <script type="text/template" id="stats-template">

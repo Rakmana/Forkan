@@ -1,0 +1,114 @@
+
+.raky {
+	font-family: 'raky';
+}
+
+/************[ Content ]***************/
+
+.sname{
+    display:inline;
+    font-family: "raky",Traditional Arabic;
+	font-weight: normal;
+    text-align: center;
+    font-size: 190% ;
+    line-height:42pt !important ;
+    color: #377;
+    margin:  5px;
+    padding: 5px;
+    
+}
+.sdesc{
+    display:inline;
+    font:normal 12px tahoma;
+    color: #333;
+    margin:  5px;
+    padding: 5px;
+    
+}
+.iAya {
+    display:inline;
+    font-size: 22px ;
+    font-family: "raky",Traditional Arabic;
+	font-weight: normal;
+    line-height:42pt !important ;
+    margin:  5px;
+    padding: 5px;
+}
+.ayatxt{
+    /*line-height:44pt;*/
+    color: #800000 ;/*#FC0;*/
+    
+    
+}
+.ayaHover{
+    color: #FF6600;
+}
+.ayaActive{
+	text-shadow : 1px 1px 1px;
+	background: transparent ;/*url('<?=form::mlink('img',SKN.'media'.SH.'img_bg.png')?>') ;*/
+	color:#04A928;
+}
+.jalalah{
+	color: red;
+}
+.ayaCtr{
+    /*position:relative;*/
+	font-family: "Traditional Arabic","Times New Roman";
+    display: inline;
+    font-size: 110% !important ;
+	font-weight: normal;
+    margin: 3px;
+	padding:2px;
+    color: #808080;
+	/*background: transparent url('<?=form::mlink('img',SKN.'media'.SH.'aya_counter.png')?>') center center no-repeat;
+*/
+	}
+.ayaCtr:active{
+	text-shadow : 1px 1px 1px;
+	/*background : #ddd;*/
+	color : #008000;
+}
+
+/*--------------------------- Search result formatting ---------------------------*/
+
+.looked{
+    font-weight: bold;
+}
+.result{
+    display:block;
+    margin:5px;
+    padding: 5px;
+    border-top:1px solid #AAA;
+}
+.resultbar{
+    display: inline;
+    top:-5px;
+    width:auto;
+    height:auto;
+    padding:2px 5px;
+    background: #FFFF99;
+    border: 1px solid #777;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+ }
+.resultinfo{
+    color: #777;
+    font: normal 10px tahoma;
+}
+.hightlight{
+    background:#EEE !important;
+}
+.result .ytxt{
+    font-size: 140% ;
+    
+ }
+ 
+.pagingSpan{
+    /*background: #339966;
+    border: 1px solid #777;
+    color: #FFFFFF;*/
+    padding: 1px;
+    margin: 1px;
+    
+}

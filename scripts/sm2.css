@@ -1,9 +1,0 @@
-<?php
-
-    
-//<!-- soundManager related CSS -->
-
-
-	include(PJS.'sm2'.DS.'360player.css');
-	include(PJS.'sm2'.DS.'flashblock.css');
-?>
