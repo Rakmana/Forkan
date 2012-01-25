@@ -1,18 +1,6 @@
 (function($){
-  
-  var defaults = {
-    rmz        : "28e336ac6c9423d946ba02d19c6a2632",
-    riwaya     : "1", // riwaya  [1:hafs 2:warch ...]
-    tafseer    : "1", // Tafseer [1:tabari 2:jalalyn ...] 
-    telawa     : "1", // Telawa  [1:Sudais 2:Afasy ...] 
-    StartAya   : "1"
-  };
-  
-  var App = {
-    ApiServer  : "http://localhost/forkan/api/",
-    version    : "1.0",
-    rmz        : "28e336ac6c9423d946ba02d19c6a2632"
-  };  
+
+ 
   $.forkan = function( callback, params ) {
     //if ( !url || !callback ) throw("url and callback required");
     
@@ -31,7 +19,17 @@
 
 // Load the application once the DOM is ready, using `jQuery.ready`:
 $(function(){
-
+ 
+    var cfg ={};
+	cfg = {
+			ApiServer  : "http://localhost/forkan/api/",
+			version    : "1.0",
+			key        : "28e336ac6c9423d946ba02d19c6a2632",
+			riwaya     : "1", // riwaya  [1:hafs 2:warch ...]
+			tafseer    : "1", // Tafseer [1:tabari 2:jalalyn ...] 
+			telawa     : "1", // Telawa  [1:Sudais 2:Afasy ...] 
+			StartAya   : "1"
+			};  
   // Forkan Model
   // ----------
 
@@ -90,12 +88,10 @@ $(function(){
     // Reference to this collection's model.
     model: Aya,
 	  
-    /*$.forkan(function(data){
-             //alert(JSON.stringify(data.dt));
-             var test = new Backbone.Collection(data.dt);
-           },'{"cls":"Forkan","act":"read","ayaID":1}');
-	},*/
-	url: "http://localhost/forkan/api/?rmz=28e336ac6c9423d946ba02d19c6a2632&ver=1.0&byn=%7B%22cls%22%3A%22Forkan%22%2C%22act%22%3A%22read%22%2C%22ayaID%22%3A1%7D",
+	url: function(){
+        //var arg={cls:"q",act:"get",ayaID:1,nbr:17};
+		return cfg.ApiServer+"?key="+cfg.key+"&ver="+cfg.ver+"&cls=q&act=get&yid="+cfg.StartAya+"&nbr=15";
+	},
 
 	parse: function(response) {
        return response.dt;
@@ -138,15 +134,17 @@ $(function(){
 
     //... is a list tag.
     tagName:  "span",
+    className:"iAyaCon",
 	//el: $(".iAya"),
     // Cache the template function for a single item.
     template: _.template($('#aya-template').html()),
+    SideTemplate : _.template($('#side-template').html()),
 
     // The DOM events specific to an item.
     events: {
       "hover .iAya"                 : "iHover",
       "click .iAya"                 : "iFocus",
-      "mouseleav .iAya"              : "iBlur",
+      //"focusout .iAya"              : "iBlur",
       //"dblclick div.todo-content" : "edit",
       //"click span.todo-destroy"   : "clear",
       //"keypress .todo-input"      : "updateOnEnter",
@@ -165,23 +163,21 @@ $(function(){
     // Re-render the contents of the todo item.
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
+	  //this.ya = this.$(".iAya");
       return this;
     },
 
     // On Hover on Aya.
     iHover: function() {
-      $(this.el).toggleClass("ayaHover");
+      $(this.el).find(".iAya").toggleClass("ayaHover");
       
     },
 
     // On click or focus on Aya.
     iFocus: function() {
-      $(this.el).addClass("ayaActive");
-    },
-	
-    // On blur or lose focus.
-    iBlur: function() {
-      $(this.el).removeClass("ayaActive");
+	  $(".iAya").removeClass("ayaActive");
+      $(this.el).find(".iAya").addClass("ayaActive");
+      $("#iside").html(this.SideTemplate(this.model.toJSON()));
     },
 
     // Close the `"editing"` mode, saving changes to the todo.
@@ -213,7 +209,7 @@ $(function(){
     el: $("#forkanApp"),
 
     // Our template for the line of statistics at the bottom of the app.
-    statsTemplate: _.template($('#stats-template').html()),
+    //statsTemplate: _.template($('#stats-template').html()),
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
@@ -263,15 +259,16 @@ $(function(){
                 })
                 .click(function(e) {
                   e.preventDefault()
-                })
-      
-    },
-
+                });
+			/*$('.scrolled').scrollbar({
+               arrows: true
+          });*/
+	},
     // Add a single todo item to the list by creating a view for it, and
     // appending its element to the `<ul>`.
-    addOne: function(todo) {
-      var view = new AyaView({model: todo});
-      this.$("#iayas").prepend(view.render().el);
+    addOne: function(aya) {
+      var view = new AyaView({model: aya});
+      this.$("#ipage").prepend(view.render().el);
     },
 
     // Add all items in the **Todos** collection at once.

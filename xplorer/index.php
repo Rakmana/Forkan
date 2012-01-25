@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="theme/raky/reset.css" type="text/css" />
 	<link rel="stylesheet" href="theme/raky/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="theme/raky/forkan.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="theme/raky/scrollbar.css" media="all" type="text/css"/>
 	
     <script src="js/LAB.js"></script>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -17,9 +18,10 @@
 		$LAB  
 		.script("js/jquery.min.js").wait()  
 		.script("js/json2.js")  
-		.script("js/jquery.tmpl.min.js")  
+		.script("js/jquery.tmpl.min.js") 
+		.script("js/jquery.scroll.js") 
 		.script("js/underscore-1.1.6.js")  
-		.script("js/backbone.js")   
+		.script("js/backbone.js")      
 		//.script("js/backbone-localstorage.js")   
 		.script("js/forkan.js") 
 		
@@ -36,6 +38,15 @@
 	</script>
 	
 	<style>
+@font-face {
+	font-family: 'ArType';
+	src: url('public/ArTypesetting.eot');
+	src:local('Arabic Typesetting'), 
+		url('public/ArTypesetting.ttf') format('truetype');
+	
+	font-weight: normal;
+	font-style: normal;
+}
 @font-face {
 	font-family: 'raky';
 	src: url('public/jvolt.eot');
@@ -76,6 +87,7 @@
       /* The white background content wrapper */
       .container > .content {
         background-color: #fff;
+		background:#fff url('theme/raky/bodyBg.gif') 0 0 repeat-x;
         padding: 20px;
         margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
         -webkit-border-radius: 0 0 6px 6px;
@@ -91,6 +103,8 @@
         background-color: #f5f5f5;
         padding: 20px 20px 10px;
         margin: -20px -20px 20px;
+    font-family: "ArType";
+    font-size: 180%;
       }
 
       /* Styles you shouldn't keep as they are for displaying this base example only */
@@ -139,27 +153,19 @@
 
       <div class="content">
         <div class="page-header">
-          <h1>Page name <small>Supporting text or tagline</small></h1>
+          <h1>الفرقان <small>نسخة القرآان الكريم على الويب</small></h1>
         </div>
         <div class="row">
           
           <div class="span10">
 
-    <!-- Forkan App Interface -->            
-    <div id="forkanApp">
-
-      <div class="content">
-
-
-        <div id="ipage">
-          <div id="iayas"></div>
-        </div>
-
-        <div id="todo-stats"></div>
-
-      </div>
-
-    </div>
+			<!-- Forkan App Interface -->            
+			<div id="forkanApp">
+			<div class="content scrolled simple">
+				<p id="ipage">
+				</p>
+			</div>
+			</div>
 
 	
   
@@ -167,6 +173,12 @@
           </div>
           <div class="span4">
             <h3>Secondary content</h3>
+			
+			<!-- Forkan App Interface --> 
+			<div id="iside">
+			
+			</div>
+			
           </div>
         </div>
       </div> <!-- /row -->
@@ -183,28 +195,18 @@
     <!-- Templates -->
 
     <script type="text/template" id="aya-template">
-      <span data-placement="above" rel="popover" data-content="<%= text %>" class="iAya" id="y<%= index %>">
+      	<% if (aya == 1) { %>
+			<div class="suraHeader">سورة <%= sura %></div>
+		<% }; %>
+		<span data-placement="above" rel="popover" data-content="<%= text %>" class="iAya" id="y<%= index %>">
         <%= text %>       
-      </span>
-	  <span class="label succes iAyaSep"><%= aya %></span>
+		</span>
+		<span class="label success iAyaSep"><%= aya %></span>
     </script>
 
-    <script type="text/template" id="stats-template">
-      <% if (total) { %>
-        <span class="todo-count">
-          <span class="number"><%= remaining %></span>
-          <span class="word"><%= remaining == 1 ? 'item' : 'items' %></span> left.
-        </span>
-      <% } %>
-      <% if (done) { %>
-        <span class="todo-clear">
-          <a href="#">
-            Clear <span class="number-done"><%= done %></span>
-            completed <span class="word-done"><%= done == 1 ? 'item' : 'items' %></span>
-          </a>
-        </span>
-      <% } %>
-    </script>
-	</div>
+    <script type="text/template" id="side-template">
+	  <span class="iTafseer"><%= text %></span>
+    </script> 
+
 </body>
 </html>

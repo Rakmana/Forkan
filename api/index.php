@@ -22,14 +22,14 @@ $applications = array(
 try {
 	//*UPDATED*
     
-    if(!isset($_REQUEST['byn']) || !isset($_REQUEST['rmz'])){
+    if(!isset($_REQUEST['ver']) || !isset($_REQUEST['key'])){
 	   throw new Exception('Request is Empty !!'); 
     }
 	//get the encrypted request
-	$enc_request = $_REQUEST['byn'];
+	$enc_request = $_REQUEST['ver'];
 
 	//get the provided app id
-	$app_id = $_REQUEST['rmz'];
+	$app_id = $_REQUEST['key'];
 	
 	//check first if the app id exists in the list of applications
 	if( !isset($applications[$app_id]) ) {
@@ -37,23 +37,24 @@ try {
 	}
 	
 	//decrypt the request
-	$params = json_decode(trim($enc_request));
+	$params = (trim($enc_request));
 	//$params = json_decode(trim(mcrypt_decrypt( MCRYPT_RIJNDAEL_256, $applications[$app_id], base64_decode($enc_request), MCRYPT_MODE_ECB )));
 	//var_dump($params);
         
 	//check if the request is valid by checking if it's an array and looking for the controller and action
-	if( ($params == false) || (isset($params->cls) == false) || (isset($params->act) == false) ) {
+	if( ($_REQUEST == false) || (isset($_REQUEST['cls']) == false) || (isset($_REQUEST['act']) == false) ) {
 		throw new Exception('Request is not valid !');
 	}
 	
 	//cast it into an array
-	$params = (array) $params;
+	$params = (array) $_REQUEST;
 	
 	//var_dump($params);
 	
 	//get the controller and format it correctly so the first
 	//letter is always capitalized
-	$controller = strtolower($params['cls']);
+	if(strtolower($params['cls']) == 'q'){ $controller = 'forkan';}
+	if(strtolower($params['cls']) == 'h'){ $controller = 'hadith';}
 	
 	//get the action and format it correctly so all the
 	//letters are not capitalized, and append 'Action'

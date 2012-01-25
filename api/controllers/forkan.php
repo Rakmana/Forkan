@@ -12,10 +12,10 @@ class Forkan
 		$this->_params = $params;
 	}
 	
-	public function readAction()
+	public function getAction()
 	{
 		//read all the todo items while passing the username and password to authenticate
-		$items = ForkanData::getAya($this->_params['ayaID'],7);
+		$items = ForkanData::getAya($this->_params['yid'],$this->_params['nbr']);
 		//var_dump($items);
 		//return the list
 		return  (array)$items;

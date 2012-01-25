@@ -38,19 +38,6 @@ class ForkanData
        
     }
 
-    public static function getAyas($ayaID,$count,$riwayaID = '1'){
-        //index  sura  aya  text  riwaya  view  
-        $ret = array();
-
-        for($i = 0; $i < $count ;$i++){
-         $ret[$i+1] = self::getAya($ayaID+$i,$riwayaID);
-        //echo "<pre>";var_dump($y);echo "</pre>";
-        }
-        
-        
-        return $ret;
-       
-    }
     /**
      * Get translated Aya info as array
      * 
@@ -58,9 +45,9 @@ class ForkanData
      * @param string $riwayaID
      * @return array [index,sura,aya,text,riwaya]
      */
-    public static function getAyaTr($suraID,$ayaID,$transID = '1'){
+    public static function getTrans($ayaID,$transID = '1'){
         //index  sura  aya  text  TransID  view 
-        $y = dbase::jfetch("SELECT q.* FROM translations q WHERE q.sura = $suraID AND aya=$ayaID and q.transID = $transID");
+        $y = dbase::jfetch("SELECT q.* FROM translations q WHERE index=$ayaID and q.transID = $transID");
         
         return $y;
        

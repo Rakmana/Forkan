@@ -4,7 +4,23 @@
 }
 
 /************[ Content ]***************/
+.ipage{
+	max-height:600px;
+	overflow:hidden;
+	text-align: justify;
+}
 
+.suraHeader{
+    font-family: "raky",Traditional Arabic;
+	font-weight: normal;
+    text-align: center;
+    font-size: 190% ;
+    line-height:42pt !important ;
+    color: #377;
+    margin:  5px;
+    padding: 5px;
+	
+}
 .sname{
     display:inline;
     font-family: "raky",Traditional Arabic;
@@ -27,8 +43,8 @@
 }
 .iAya {
     display:inline;
-    font-size: 22px ;
-    font-family: "raky",Traditional Arabic;
+    font-size: 36px ;
+    font-family: "ArType",Traditional Arabic;
 	font-weight: normal;
     line-height:42pt !important ;
     margin:  5px;
