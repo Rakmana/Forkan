@@ -1,0 +1,6 @@
+{% extends 'main.json' %}
+
+{% block state %}true{% endblock %}
+{% block error %}[]{% endblock %}
+
+{% block data %}{}{% for surah in suras %},{"start":"{{ surah.start }}","ayas":"{{ surah.ayas }}","order":"{{ surah.order}}","ename":"{{ surah.ename }}","name":"{{ surah.name }}","type":"{{ surah.type}}"}{% else %}{% endfor %}{% endblock %}

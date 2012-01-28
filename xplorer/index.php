@@ -19,7 +19,7 @@
 		.script("js/jquery.min.js").wait()  
 		.script("js/json2.js")  
 		.script("js/jquery.tmpl.min.js") 
-		.script("js/jquery.scroll.js") 
+		//.script("js/jquery.scroll.js") 
 		.script("js/underscore-1.1.6.js")  
 		.script("js/backbone.js")      
 		//.script("js/backbone-localstorage.js")   
@@ -136,14 +136,14 @@
 	<div class="topbar">
 		<div class="fill">
 			<div class="container">
-				<a class="brand" href="index.php" style="width: 80px;height: 20px;background:url(forkan.png) center center no-repeat;" /></a>          
+				<a class="brand" href="index.php" style="width: 80px;height: 20px;background:url(forkan.png) center center no-repeat;"></a>          
 				<ul class="nav">
 					<li class="active"><a href="/" data-placement="below" rel='twipsy' title="الصفحة الرئيسية">الرئيسية</a></li>
 					<li><a href="#about" data-placement="below" rel='twipsy' title="من نحن">من نحن</a></li>
 					<li><a href="#contact" data-placement="below" rel='twipsy' title="إتصل بنا">وصال</a></li>
 				</ul>
 				<form action="" class="pull-right">
-					<input type="text" placeholder="Search">
+					<input type="text" placeholder="Search" />
 				</form>
 			</div>
 		</div>
@@ -151,20 +151,21 @@
 	
     <div class="container">
 
-      <div class="content">
+	<!-- Forkan App Interface --> 
+      <div class="content" id="forkanApp">
+      
         <div class="page-header">
           <h1>الفرقان <small>نسخة القرآان الكريم على الويب</small></h1>
+
         </div>
         <div class="row">
           
           <div class="span10">
-
-			<!-- Forkan App Interface -->            
-			<div id="forkanApp">
+           
 			<div class="content scrolled simple">
-				<p id="ipage">
+				<!-- Page Holder -->
+                <p id="ipage">
 				</p>
-			</div>
 			</div>
 
 	
@@ -172,17 +173,18 @@
 
           </div>
           <div class="span4">
-            <h3>Secondary content</h3>
-			
-			<!-- Forkan App Interface --> 
+			<!-- Side Holder --> 
 			<div id="iside">
 			
 			</div>
 			
+				<ul id="suraList" class="nav tabs stacked" style="height:400px;overflow: auto;"></ul>
+				<ul id="pageList" style="height:400px;overflow: auto;"></ul>
           </div>
         </div>
       </div> <!-- /row -->
 
+	<!-- Forkan App Interface -->
       <footer>
         <p>&copy; itkane.com 2012. by Jnom23.</p>
 
@@ -198,10 +200,22 @@
       	<% if (aya == 1) { %>
 			<div class="suraHeader">سورة <%= sura %></div>
 		<% }; %>
-		<span data-placement="above" rel="popover" data-content="<%= text %>" class="iAya" id="y<%= index %>">
+		<span data-placement="above" rel="popover" data-content="<%= text %>" class="iAya" id="ya<%= index %>">
         <%= text %>       
 		</span>
 		<span class="label success iAyaSep"><%= aya %></span>
+    </script>
+    
+    <script type="text/template" id="sura-template">
+		<li data-placement="right" rel="popover" data-content="<%= ename %>" class="iSura " id="sr<%= ayas %>">
+        <%= name %>       
+		</li>
+    </script>
+	
+    <script type="text/template" id="page-template">
+		<li class="iPage" id="pg<%= index %>">
+        <%= index %>       
+		</li>
     </script>
 
     <script type="text/template" id="side-template">

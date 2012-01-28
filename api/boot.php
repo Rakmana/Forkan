@@ -42,7 +42,6 @@ if (extension_loaded('mbstring')){	mb_internal_encoding('UTF-8');}
 define('DS', DIRECTORY_SEPARATOR);
 define('KROT', dirname(__FILE__). DS);
 define('PSYS', KROT . 'core' . DS);
-define('PXML', KROT . 'core' . DS . 'store' . DS);
 define('PLNG', KROT . 'languages' . DS);
 define('PAPP', KROT . 'applications' . DS);
 define('PJS',  KROT . 'scripts' . DS);
@@ -78,6 +77,7 @@ if (version_compare(phpversion(), '5', '<') == true) {
 }
 /************************************************************/
 
+include_once(PSYS.'kernel.php');
 
 
 ?>

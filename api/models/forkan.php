@@ -1,7 +1,8 @@
 <?php
 
-include_once(PSYS.'dbase.php');
 
+
+		
 class ForkanData
 {
 	public $todo_id;
@@ -76,53 +77,170 @@ class ForkanData
 
         return $y;        
     }    
-	
-	public static function save($username, $userpass)
-	{
-		$userhash = sha1("{$username}_{$userpass}");
-		if( is_dir(DATA_PATH."/{$userhash}") === false ) {
-			mkdir(DATA_PATH."/{$userhash}");
-		}
-		
-		//if the $todo_id isn't set yet, it means we need to create a new todo item
-		if( is_null($this->todo_id) || !is_numeric($this->todo_id) ) {
-			//the todo id is the current time
-			$this->todo_id = time();
-		}
-		
-		//get the array version of this todo item
-		$todo_item_array = $this->toArray();
-		
-		//save the serialized array version into a file
-		$success = file_put_contents(DATA_PATH."/{$userhash}/{$this->todo_id}.txt", serialize($todo_item_array));
-		
-		//if saving was not successful, throw an exception
-		if( $success === false ) {
-			throw new Exception('Failed to save todo item');
-		}
-		
-		//return the array version
-		return $todo_item_array;
-	}
-	
-	public function toArray()
-	{
-		//return an array version of the todo item
-		return array(
-			'todo_id' => $this->todo_id,
-			'title' => $this->title,
-			'description' => $this->description,
-			'due_date' => $this->due_date,
-			'is_done' => $this->is_done
-		);
-	}
-	
-	private static function _checkIfUserExists($username, $userpass)
-	{
-		/*$userhash = sha1("{$username}_{$userpass}");
-		if( is_dir(DATA_PATH."/{$userhash}") === false ) {
-			throw new Exception('Username  or Password is invalid');
-		}*/
-		return true;
-	}
+
 }
+
+
+class metaQuran
+{
+    public $xml = array();
+
+    public static function init()
+    {
+        // create the KONFIG object
+        metaQuran::load(KROT .'models'.DS.'quran-data.xml');
+        // Lets make sure we save serialized data
+    }
+
+    public static function load($xmlfile)
+    {
+        $GLOBALS['WQX'] = kore::getInstance('metaQuran');
+        
+        $GLOBALS['WQX']->xml['data']  = xmldoc::import($xmlfile);
+        $GLOBALS['WQX']->xml['data2'] = xmldoc::import(KROT .'models'.DS.'quran-data.xml');
+        //btrack('KFG File loaded: '.$section);
+    }
+
+    
+    /**
+     * Get key Attribute from xml
+     * 
+     * @param mixed $name
+     * @param mixed $index
+     * @param mixed $attr
+     * @return mixed Attribute OR False
+     */
+    public static function getAttr($name,$index,$attr)
+    {
+        $element = @$GLOBALS['WQX']->xml['data']->xpath("//".$name."[@index='$index']");
+        
+        if (!isset($element[0])){
+            return false; 
+            
+        }
+        
+        
+        
+        $atts = $element[0]->attributes();
+        if (!isset($atts[$attr])){
+            return false; 
+        }
+        
+        $ret = $atts[$attr];
+        //tools::dump($ret);
+        
+        
+        return $ret;
+
+    }
+    //--- will b removed
+	public static function rep(){
+        
+		$els = $GLOBALS['WQX']->xml['data']->xpath("//sura");
+        
+        foreach ($els as  $e ){
+		    $atts = $e->attributes();
+        	$ndx = $atts['index'];
+			
+			$e2 = $GLOBALS['WQX']->xml['data2']->xpath("//sura[@index='$ndx']");
+		    $atts2 = $e2[0]->attributes();
+        	$name2 = $atts2['name'];
+			
+			if (!empty($name2)){
+				$atts['name'] = $name2;
+			}
+		
+		}
+        
+		$GLOBALS['WQX']->xml['data']->asXML(PAPP .'forkan'.DS. 'quran-data.xml');        
+        return true;	
+	}
+    /**
+     * Get All attributes of the given key
+     * 
+     * @param mixed $name
+     * @param mixed $index
+     * @return
+     */
+    public static function getAllAttr($name,$index){
+        $element = $GLOBALS['WQX']->xml['data']->xpath("//".$name."[@index='$index']");
+        
+        if (!isset($element[0])){
+            return false; 
+            
+        }
+
+        $ret = $element[0]->attributes();
+     
+        return $ret;        
+    }
+    
+    /**
+     * Get sura metadata
+     * [index,ayas,start,name,tname,ename,type(Medinan,Meccan),order,rukus]
+     * 
+     * @param mixed $index
+     * @param mixed $meta 
+     * @return mixed Meta OR False
+     */
+    public static function getSuraMeta($index,$meta){
+        return self::getAttr('sura',$index,$meta);
+    }
+    
+    /**
+     * Get Juz metadata
+     * [index,sura,aya]
+     * 
+     * @param mixed $index
+     * @param mixed $meta
+     * @return mixed Meta OR False
+     */
+    public static function getJuzMeta($index,$meta){
+        return self::getAttr('juz',$index,$meta);
+    }
+    
+    /**
+     * Get Quarter metadata
+     * [index,sura,aya]
+     * 
+     * @param mixed $index
+     * @param mixed $meta
+     * @return mixed Meta OR False
+     */
+    public static function getQuarterMeta($index,$meta){
+        return self::getAttr('quarter',$index,$meta);
+    }
+    
+    /**
+     * Get Page metadata
+     * [index,sura,aya]
+     * 
+     * @param mixed $index
+     * @param mixed $meta
+     * @return mixed Meta OR False
+     */
+    public static function getPageMeta($index,$meta){
+        return self::getAttr('page',$index,$meta);
+    }
+
+
+    function xit()
+    {
+        $GLOBALS['WQX']->xml['data']->asXML(KROT .'models'.DS.'quran-data.xml');
+    }
+
+    /**
+     * konfig::save()
+     * 
+     * @param mixed $section
+     * @param mixed $xmlfile
+     * @return
+     */
+    function save($section, $xmlfile)
+    {
+        $GLOBALS['WQX']->xml['data']->asXML($xmlfile);
+    }
+
+
+}
+

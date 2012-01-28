@@ -1,0 +1,5 @@
+	{% for article in articles %}
+		{ id:"{{ article.index }}" , text:"{{ article.text }} }"
+	{% else %}	
+		<p>There are currently no ayas.</p>
+	{% endfor %}
