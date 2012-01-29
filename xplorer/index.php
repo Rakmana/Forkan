@@ -133,7 +133,7 @@
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 </head>
 <body>
-	<div class="topbar">
+	<div class="topbar" data-dropdown="dropdown">
 		<div class="fill">
 			<div class="container">
 				<a class="brand" href="index.php" style="width: 80px;height: 20px;background:url(forkan.png) center center no-repeat;"></a>          
@@ -141,6 +141,15 @@
 					<li class="active"><a href="/" data-placement="below" rel='twipsy' title="الصفحة الرئيسية">الرئيسية</a></li>
 					<li><a href="#about" data-placement="below" rel='twipsy' title="من نحن">من نحن</a></li>
 					<li><a href="#contact" data-placement="below" rel='twipsy' title="إتصل بنا">وصال</a></li>
+					<li class="menu" data-dropdown="dropdown" >
+						<a class="menu" href="#">السور</a>
+						<ul class="menu-dropdown" id="suraList" style="height:400px;overflow: auto;">
+							<!--<li><a href="#">Secondary link</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Another link</a></li>-->
+						</ul>
+					</li>
 				</ul>
 				<form action="" class="pull-right">
 					<input type="text" placeholder="Search" />
@@ -177,9 +186,9 @@
 			<div id="iside">
 			
 			</div>
+
+			<ul id="pageList" style="height:400px;overflow: auto;"></ul>
 			
-				<ul id="suraList" class="nav tabs stacked" style="height:400px;overflow: auto;"></ul>
-				<ul id="pageList" style="height:400px;overflow: auto;"></ul>
           </div>
         </div>
       </div> <!-- /row -->
@@ -198,28 +207,28 @@
 
     <script type="text/template" id="aya-template">
       	<% if (aya == 1) { %>
-			<div class="suraHeader">سورة <%= sura %></div>
+			<div class="suraHeader">سورة <%= sur %></div>
 		<% }; %>
-		<span data-placement="above" rel="popover" data-content="<%= text %>" class="iAya" id="ya<%= index %>">
-        <%= text %>       
+		<span data-placement="above" rel="popover" data-content="<%= txt %>" class="iAya" id="ya<%= yid %>">
+        <%= txt %>       
 		</span>
 		<span class="label success iAyaSep"><%= aya %></span>
     </script>
     
     <script type="text/template" id="sura-template">
-		<li data-placement="right" rel="popover" data-content="<%= ename %>" class="iSura " id="sr<%= ayas %>">
-        <%= name %>       
-		</li>
+		<a href="#" id="sr<%= sid %>" class="iSura ">
+        <%= nam %>       
+		</a>
     </script>
 	
     <script type="text/template" id="page-template">
-		<li class="iPage" id="pg<%= index %>">
-        <%= index %>       
+		<li class="iPage" id="pg<%= pid %>">
+        <%= pid %>       
 		</li>
     </script>
 
     <script type="text/template" id="side-template">
-	  <span class="iTafseer"><%= text %></span>
+	  <span class="iTafseer"><%= txt %></span>
     </script> 
 
 </body>

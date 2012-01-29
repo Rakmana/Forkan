@@ -38,18 +38,20 @@ class ForkanData
 	//[0, 7, 5, 1, 'الفاتحة', "Al-Faatiha", 'The Opening', 'Meccan'],
 //index="1" ayas="7" start="0" name="الْفَاتِحَة" tname="Al-Faatiha" ename="The Opening" type="Meccan"     
         $els = $GLOBALS['WQX']->xml['data']->xpath("//sura");
-        $ht = array();//'[],';
+        $ht = array();//'[],';       
+		$i = 1;
         foreach ($els as  $e ){
 		    $atts = $e->attributes();
             
             //--- add 1 to start aya
-            $atts['start'] += 1;
+            $atts['start'] += 1;     
+			
+			//--- add index
+			$atts['index'] = $i;
 			
             $ht[] = $atts;
             
-            //$ht .= '['.$atts['start'].','.$atts['ayas'].','.$atts['order'].','./*$atts['rukus'].*/',';
-            //$ht .= "'".$atts['name']."',\"".$atts['tname']."\",'".$atts['ename']."','".$atts['type']."'],";
-		
+            $i++;
 		}
         
 		//$ht .= '[6236, 1]'  ;
@@ -67,9 +69,9 @@ class ForkanData
             
             //--- add 1 to start aya
             $atts['start'] += 1;
+
 			
             $ht[] = $atts;
-            
             //$ht .= '['.$atts['start'].','.$atts['ayas'].','.$atts['order'].','./*$atts['rukus'].*/',';
             //$ht .= "'".$atts['name']."',\"".$atts['tname']."\",'".$atts['ename']."','".$atts['type']."'],";
 		

@@ -3,4 +3,4 @@
 {% block state %}true{% endblock %}
 {% block error %}[]{% endblock %}
 
-{% block data %}{}{% for ayah in ayas %},{"index":"{{ ayah.index }}","sura":"{{ ayah.sura }}","aya":"{{ ayah.aya}}","text":"{{ ayah.text }}"}{% else %}{% endfor %}{% endblock %}
+{% block data %}{}{% for ayah in ayas %},{"yid":"{{ ayah.index }}","sur":"{{ ayah.sura }}","aya":"{{ ayah.aya}}","txt":"{{ ayah.text }}"}{% else %}{% endfor %}{% endblock %}

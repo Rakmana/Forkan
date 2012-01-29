@@ -3,4 +3,4 @@
 {% block state %}true{% endblock %}
 {% block error %}[]{% endblock %}
 
-{% block data %}{}{% for page in pages %},{"index":"{{ page.index }}","sura":"{{ page.sura }}","aya":"{{ page.aya}}"}{% else %}{% endfor %}{% endblock %}
+{% block data %}{}{% for page in pages %},{"pid":"{{ page.index }}","sur":"{{ page.sura }}","aya":"{{ page.aya}}"}{% else %}{% endfor %}{% endblock %}

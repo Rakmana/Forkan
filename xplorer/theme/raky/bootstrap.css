@@ -148,7 +148,7 @@ body {
   margin-right: -240px;
 }
 .fluid-content {
-  float: left;
+  float: right;
   width: 100%;
 }
 a {
@@ -160,7 +160,7 @@ a:hover {
   text-decoration: underline;
 }
 .row {
-  margin-left: -20px;
+  margin-right: -20px;
   *zoom: 1;
 }
 .row:before, .row:after {
@@ -171,8 +171,8 @@ a:hover {
   clear: both;
 }
 [class*="span"] {
-  float: left;
-  margin-left: 20px;
+  float: right;
+  margin-right: 20px;
 }
 .span1 {
   width: 60px;
@@ -211,37 +211,37 @@ a:hover {
   width: 940px;
 }
 .offset1 {
-  margin-left: 100px;
+  margin-right: 100px;
 }
 .offset2 {
-  margin-left: 180px;
+  margin-right: 180px;
 }
 .offset3 {
-  margin-left: 260px;
+  margin-right: 260px;
 }
 .offset4 {
-  margin-left: 340px;
+  margin-right: 340px;
 }
 .offset5 {
-  margin-left: 420px;
+  margin-right: 420px;
 }
 .offset6 {
-  margin-left: 500px;
+  margin-right: 500px;
 }
 .offset7 {
-  margin-left: 580px;
+  margin-right: 580px;
 }
 .offset8 {
-  margin-left: 660px;
+  margin-right: 660px;
 }
 .offset9 {
-  margin-left: 740px;
+  margin-right: 740px;
 }
 .offset10 {
-  margin-left: 820px;
+  margin-right: 820px;
 }
 .offset11 {
-  margin-left: 900px;
+  margin-right: 900px;
 }
 p {
   margin: 0 0 9px;
@@ -337,7 +337,7 @@ li {
   line-height: 18px;
 }
 ul.unstyled {
-  margin-left: 0;
+  margin-right: 0;
   list-style: none;
 }
 dl {
@@ -350,7 +350,7 @@ dt {
   font-weight: bold;
 }
 dd {
-  margin-left: 9px;
+  margin-right: 9px;
 }
 hr {
   margin: 18px 0;
@@ -376,7 +376,7 @@ abbr {
 blockquote {
   padding: 0 0 0 15px;
   margin: 0 0 18px;
-  border-left: 5px solid #eeeeee;
+  border-right: 5px solid #eeeeee;
 }
 blockquote p {
   margin-bottom: 0;
@@ -394,9 +394,9 @@ blockquote small:before {
 }
 blockquote.pull-right {
   float: right;
-  padding-left: 0;
+  padding-right: 0;
   padding-right: 15px;
-  border-left: 0;
+  border-right: 0;
   border-right: 5px solid #eeeeee;
 }
 blockquote.pull-right p, blockquote.pull-right small {
@@ -560,11 +560,11 @@ textarea {
   height: auto;
 }
 .radio, .checkbox {
-  padding-left: 18px;
+  padding-right: 18px;
 }
 .radio input[type=radio], .checkbox input[type=checkbox] {
-  float: left;
-  margin-left: -18px;
+  float: right;
+  margin-right: -18px;
 }
 .controls > .radio:first-child, .controls > .checkbox:first-child {
   padding-top: 6px;
@@ -574,7 +574,7 @@ textarea {
   margin-bottom: 0;
 }
 .radio.inline + .radio.inline, .checkbox.inline + .checkbox.inline {
-  margin-left: 10px;
+  margin-right: 10px;
 }
 input, textarea {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -622,7 +622,7 @@ select[class*="span"],
 textarea[class*="span"],
 .uneditable-input {
   float: none;
-  margin-left: 0;
+  margin-right: 0;
 }
 input.span1, textarea.span1, .uneditable-input.span1 {
   width: 50px;
@@ -805,7 +805,7 @@ input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, selec
   /* IE6-7 */
 
   display: inline;
-  padding-left: 5px;
+  padding-right: 5px;
 }
 .input-prepend, .input-append {
   margin-bottom: 5px;
@@ -830,10 +830,10 @@ input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, selec
   border-radius: 0 3px 3px 0;
 }
 .input-prepend .uneditable-input, .input-append .uneditable-input {
-  border-left-color: #ccc;
+  border-right-color: #ccc;
 }
 .input-prepend .add-on, .input-append .add-on {
-  float: left;
+  float: right;
   display: block;
   width: auto;
   min-width: 16px;
@@ -861,7 +861,7 @@ input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, selec
 
 }
 .input-append input, .input-append .uneditable-input {
-  float: left;
+  float: right;
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
@@ -871,13 +871,13 @@ input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, selec
 }
 .input-append .add-on {
   margin-right: 0;
-  margin-left: -1px;
+  margin-right: -1px;
   -webkit-border-radius: 0 3px 3px 0;
   -moz-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
 .search-query {
-  padding-left: 14px;
+  padding-right: 14px;
   padding-right: 14px;
   margin-bottom: 0;
   -webkit-border-radius: 14px;
@@ -909,16 +909,16 @@ input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, selec
   margin-bottom: 18px;
 }
 .form-horizontal .control-group > label {
-  float: left;
+  float: right;
   width: 140px;
   padding-top: 5px;
   text-align: right;
 }
 .form-horizontal .controls {
-  margin-left: 160px;
+  margin-right: 160px;
 }
 .form-horizontal .form-actions {
-  padding-left: 160px;
+  padding-right: 160px;
 }
 table {
   max-width: 100%;
@@ -932,7 +932,7 @@ table {
 .table th, .table td {
   padding: 8px;
   line-height: 18px;
-  text-align: left;
+  text-align: right;
   border-top: 1px solid #ddd;
 }
 .table th {
@@ -962,7 +962,7 @@ table {
 .table-bordered td + td,
 .table-bordered th + td,
 .table-bordered td + th {
-  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 .table-bordered thead:first-child tr:first-child th, .table-bordered tbody:first-child tr:first-child th, .table-bordered tbody:first-child tr:first-child td {
   border-top: 0;
@@ -993,62 +993,62 @@ table {
 table .span1 {
   float: none;
   width: 44px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span2 {
   float: none;
   width: 124px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span3 {
   float: none;
   width: 204px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span4 {
   float: none;
   width: 284px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span5 {
   float: none;
   width: 364px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span6 {
   float: none;
   width: 444px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span7 {
   float: none;
   width: 524px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span8 {
   float: none;
   width: 604px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span9 {
   float: none;
   width: 684px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span10 {
   float: none;
   width: 764px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span11 {
   float: none;
   width: 844px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .span12 {
   float: none;
   width: 924px;
-  margin-left: 0;
+  margin-right: 0;
 }
 table .header {
   cursor: pointer;
@@ -1077,7 +1077,7 @@ table .headerSortDown:after, table .headerSortDown:hover:after {
 }
 table .headerSortUp:after {
   border-bottom: none;
-  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid #000000;
   visibility: visible;
@@ -1376,7 +1376,7 @@ i {
   height: 0;
   text-indent: -99999px;
   vertical-align: top;
-  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid #000000;
   filter: alpha(opacity=30);
@@ -1386,7 +1386,7 @@ i {
 }
 .dropdown .caret {
   margin-top: 8px;
-  margin-left: 2px;
+  margin-right: 2px;
   *margin-top: 7px;
 }
 .dropdown:hover .caret, .open.dropdown .caret {
@@ -1398,7 +1398,7 @@ i {
   position: absolute;
   top: 100%;
   z-index: 1000;
-  float: left;
+  float: right;
   display: none;
   min-width: 160px;
   max-width: 220px;
@@ -1526,7 +1526,7 @@ i {
   cursor: pointer;
 }
 .nav {
-  margin-left: 0;
+  margin-right: 0;
   margin-bottom: 18px;
   list-style: none;
 }
@@ -1538,14 +1538,14 @@ i {
   background-color: #eeeeee;
 }
 .nav.list {
-  padding-left: 14px;
+  padding-right: 14px;
   padding-right: 14px;
   margin-bottom: 0;
 }
 .nav.list > li > a, .nav.list .nav-header {
   display: block;
   padding: 3px 15px;
-  margin-left: -15px;
+  margin-right: -15px;
   margin-right: -15px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
@@ -1578,11 +1578,11 @@ i {
   clear: both;
 }
 .tabs > li, .pills > li {
-  float: left;
+  float: right;
 }
 .tabs > li > a, .pills > li > a {
   padding-right: 12px;
-  padding-left: 12px;
+  padding-right: 12px;
   margin-right: 2px;
   line-height: 14px;
 }
@@ -1742,7 +1742,7 @@ i {
   margin-bottom: 3px;
 }
 .tabs-left .tabs {
-  float: left;
+  float: right;
   margin-right: 19px;
   border-right: 1px solid #ddd;
 }
@@ -1760,11 +1760,11 @@ i {
 }
 .tabs-right .tabs {
   float: right;
-  margin-left: 19px;
-  border-left: 1px solid #ddd;
+  margin-right: 19px;
+  border-right: 1px solid #ddd;
 }
 .tabs-right .tabs > li > a {
-  margin-left: -1px;
+  margin-right: -1px;
   -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
@@ -1781,10 +1781,10 @@ i {
 .navbar-inner {
   background-color: #222222;
   background-color: #222222;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#333333), to(#222222));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#333333), to(#222222));
   background-image: -moz-linear-gradient(top, #333333, #222222);
   background-image: -ms-linear-gradient(top, #333333, #222222);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333), color-stop(100%, #222222));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #333333), color-stop(100%, #222222));
   background-image: -webkit-linear-gradient(top, #333333, #222222);
   background-image: -o-linear-gradient(top, #333333, #222222);
   background-image: linear-gradient(top, #333333, #222222);
@@ -1799,10 +1799,10 @@ i {
   text-decoration: none;
 }
 .navbar .brand {
-  float: left;
+  float: right;
   display: block;
   padding: 8px 20px 12px;
-  margin-left: -20px;
+  margin-right: -20px;
   font-size: 20px;
   font-weight: 200;
   line-height: 1;
@@ -1831,7 +1831,7 @@ i {
 }
 .navbar-search {
   position: relative;
-  float: left;
+  float: right;
   margin-top: 6px;
   margin-bottom: 0;
 }
@@ -1881,7 +1881,7 @@ i {
   margin-bottom: 18px;
 }
 .navbar-static .navbar-inner {
-  padding-left: 20px;
+  padding-right: 20px;
   padding-right: 20px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1891,14 +1891,14 @@ i {
   position: fixed;
   top: 0;
   right: 0;
-  left: 0;
+  right: 0;
   z-index: 1030;
 }
 .navbar .nav {
   position: relative;
-  left: 0;
+  right: 0;
   display: block;
-  float: left;
+  float: right;
   margin: 0 10px 0 0;
 }
 .navbar .nav.pull-right {
@@ -1906,7 +1906,7 @@ i {
 }
 .navbar .nav > li {
   display: block;
-  float: left;
+  float: right;
 }
 .navbar .nav > li > a {
   float: none;
@@ -1936,7 +1936,7 @@ i {
   border-right: 1px solid #444;
 }
 .navbar .nav.pull-right {
-  margin-left: 10px;
+  margin-right: 10px;
   margin-right: 0;
 }
 .navbar .dropdown-menu {
@@ -1948,23 +1948,23 @@ i {
 .navbar .dropdown-menu:before {
   content: '';
   display: inline-block;
-  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
   border-right: 7px solid transparent;
   border-bottom: 7px solid #ccc;
   border-bottom-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   top: -7px;
-  left: 9px;
+  right: 9px;
 }
 .navbar .dropdown-menu:after {
   content: '';
   display: inline-block;
-  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
   border-right: 6px solid transparent;
   border-bottom: 6px solid #ffffff;
   position: absolute;
   top: -6px;
-  left: 10px;
+  right: 10px;
 }
 .navbar .nav .dropdown-toggle .caret, .navbar .nav .open.dropdown .caret {
   border-top-color: #ffffff;
@@ -1984,21 +1984,21 @@ i {
   right: 0;
 }
 .navbar .nav.pull-right .dropdown-menu:before {
-  left: auto;
+  right: auto;
   right: 12px;
 }
 .navbar .nav.pull-right .dropdown-menu:after {
-  left: auto;
+  right: auto;
   right: 13px;
 }
 .breadcrumb {
   padding: 7px 14px;
   margin: 0 0 18px;
   background-color: #f5f5f5;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#f5f5f5));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#ffffff), to(#f5f5f5));
   background-image: -moz-linear-gradient(top, #ffffff, #f5f5f5);
   background-image: -ms-linear-gradient(top, #ffffff, #f5f5f5);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #f5f5f5));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #f5f5f5));
   background-image: -webkit-linear-gradient(top, #ffffff, #f5f5f5);
   background-image: -o-linear-gradient(top, #ffffff, #f5f5f5);
   background-image: linear-gradient(top, #ffffff, #f5f5f5);
@@ -2033,7 +2033,7 @@ i {
   /* IE7 inline-block hack */
 
   *zoom: 1;
-  margin-left: 0;
+  margin-right: 0;
   margin-bottom: 0;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -2046,12 +2046,12 @@ i {
   display: inline;
 }
 .pagination a {
-  float: left;
+  float: right;
   padding: 0 14px;
   line-height: 34px;
   text-decoration: none;
   border: 1px solid #ddd;
-  border-left-width: 0;
+  border-right-width: 0;
 }
 .pagination a:hover, .pagination .active a {
   background-color: #f5f5f5;
@@ -2065,7 +2065,7 @@ i {
   cursor: default;
 }
 .pagination li:first-child a {
-  border-left-width: 1px;
+  border-right-width: 1px;
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
@@ -2082,7 +2082,7 @@ i {
   text-align: right;
 }
 .pager {
-  margin-left: 0;
+  margin-right: 0;
   margin-bottom: 18px;
   list-style: none;
   text-align: center;
@@ -2110,14 +2110,14 @@ i {
   float: right;
 }
 .pager .previous a {
-  float: left;
+  float: right;
 }
 .modal-backdrop {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
+  right: 0;
   z-index: 1040;
   background-color: #000000;
 }
@@ -2132,7 +2132,7 @@ i {
 .modal {
   position: fixed;
   top: 50%;
-  left: 50%;
+  right: 50%;
   z-index: 1050;
   max-height: 500px;
   overflow: auto;
@@ -2197,7 +2197,7 @@ i {
 }
 .modal-footer .btn {
   float: right;
-  margin-left: 5px;
+  margin-right: 5px;
 }
 .tooltip {
   position: absolute;
@@ -2219,19 +2219,19 @@ i {
   margin-top: -2px;
 }
 .tooltip.right {
-  margin-left: 2px;
+  margin-right: 2px;
 }
 .tooltip.bottom {
   margin-top: 2px;
 }
 .tooltip.left {
-  margin-left: -2px;
+  margin-right: -2px;
 }
 .tooltip.top .tooltip-arrow {
   bottom: 0;
-  left: 50%;
-  margin-left: -5px;
-  border-left: 5px solid transparent;
+  right: 50%;
+  margin-right: -5px;
+  border-right: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid #000000;
 }
@@ -2241,19 +2241,19 @@ i {
   margin-top: -5px;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 5px solid #000000;
+  border-right: 5px solid #000000;
 }
 .tooltip.bottom .tooltip-arrow {
   top: 0;
-  left: 50%;
-  margin-left: -5px;
-  border-left: 5px solid transparent;
+  right: 50%;
+  margin-right: -5px;
+  border-right: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid #000000;
 }
 .tooltip.right .tooltip-arrow {
   top: 50%;
-  left: 0;
+  right: 0;
   margin-top: -5px;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
@@ -2278,7 +2278,7 @@ i {
 .popover {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 1010;
   display: none;
   padding: 5px;
@@ -2287,7 +2287,7 @@ i {
   margin-top: -5px;
 }
 .popover.right {
-  margin-left: 5px;
+  margin-right: 5px;
 }
 .popover.bottom {
   margin-top: 5px;
@@ -2297,15 +2297,15 @@ i {
 }
 .popover.top .arrow {
   bottom: 0;
-  left: 50%;
-  margin-left: -5px;
-  border-left: 5px solid transparent;
+  right: 50%;
+  margin-right: -5px;
+  border-right: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid #000000;
 }
 .popover.right .arrow {
   top: 50%;
-  left: 0;
+  right: 0;
   margin-top: -5px;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
@@ -2313,9 +2313,9 @@ i {
 }
 .popover.bottom .arrow {
   top: 0;
-  left: 50%;
-  margin-left: -5px;
-  border-left: 5px solid transparent;
+  right: 50%;
+  margin-right: -5px;
+  border-right: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid #000000;
 }
@@ -2378,10 +2378,10 @@ i {
 }
 .btn.danger {
   background-color: #c43c35;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#ee5f5b), to(#c43c35));
   background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
   background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee5f5b), color-stop(100%, #c43c35));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ee5f5b), color-stop(100%, #c43c35));
   background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
   background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
   background-image: linear-gradient(top, #ee5f5b, #c43c35);
@@ -2392,10 +2392,10 @@ i {
 }
 .btn.success {
   background-color: #57a957;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#62c462), to(#57a957));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#62c462), to(#57a957));
   background-image: -moz-linear-gradient(top, #62c462, #57a957);
   background-image: -ms-linear-gradient(top, #62c462, #57a957);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #62c462), color-stop(100%, #57a957));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #62c462), color-stop(100%, #57a957));
   background-image: -webkit-linear-gradient(top, #62c462, #57a957);
   background-image: -o-linear-gradient(top, #62c462, #57a957);
   background-image: linear-gradient(top, #62c462, #57a957);
@@ -2406,10 +2406,10 @@ i {
 }
 .btn.info {
   background-color: #339bb9;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#5bc0de), to(#339bb9));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#5bc0de), to(#339bb9));
   background-image: -moz-linear-gradient(top, #5bc0de, #339bb9);
   background-image: -ms-linear-gradient(top, #5bc0de, #339bb9);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5bc0de), color-stop(100%, #339bb9));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #5bc0de), color-stop(100%, #339bb9));
   background-image: -webkit-linear-gradient(top, #5bc0de, #339bb9);
   background-image: -o-linear-gradient(top, #5bc0de, #339bb9);
   background-image: linear-gradient(top, #5bc0de, #339bb9);
@@ -2461,10 +2461,10 @@ i {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #0064cd;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#049cdb), to(#0064cd));
   background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
   background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
   background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
   background-image: -o-linear-gradient(top, #049cdb, #0064cd);
   background-image: linear-gradient(top, #049cdb, #0064cd);
@@ -2532,27 +2532,27 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   clear: both;
 }
 .btn-group + .btn-group {
-  margin-left: 5px;
+  margin-right: 5px;
 }
 .btn-toolbar .btn-group {
   display: inline-block;
 }
 .btn-group .btn {
   position: relative;
-  float: left;
-  margin-left: -1px;
+  float: right;
+  margin-right: -1px;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
 }
 .btn-group .btn:first-child {
-  margin-left: 0;
-  -webkit-border-top-left-radius: 4px;
-  -moz-border-radius-topleft: 4px;
-  border-top-left-radius: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  border-bottom-left-radius: 4px;
+  margin-right: 0;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-right-radius: 4px;
 }
 .btn-group .btn:last-child, .btn-group .dropdown-toggle {
   -webkit-border-top-right-radius: 4px;
@@ -2563,13 +2563,13 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   border-bottom-right-radius: 4px;
 }
 .btn-group .btn.large:first-child {
-  margin-left: 0;
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-radius-topleft: 6px;
-  border-top-left-radius: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomleft: 6px;
-  border-bottom-left-radius: 6px;
+  margin-right: 0;
+  -webkit-border-top-right-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  border-top-right-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  border-bottom-right-radius: 6px;
 }
 .btn-group .btn.large:last-child, .btn-group .large.dropdown-toggle {
   -webkit-border-top-right-radius: 6px;
@@ -2583,7 +2583,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   z-index: 2;
 }
 .btn-group .dropdown-toggle {
-  padding-left: 8px;
+  padding-right: 8px;
   padding-right: 8px;
   -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), 0 1px 2px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -2607,7 +2607,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 }
 .btn .caret {
   margin-top: 6px;
-  margin-left: 0;
+  margin-right: 0;
 }
 .primary .caret,
 .danger .caret,
@@ -2671,7 +2671,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   margin-top: 5px;
 }
 .thumbnails {
-  margin-left: -20px;
+  margin-right: -20px;
   list-style: none;
   *zoom: 1;
 }
@@ -2683,7 +2683,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   clear: both;
 }
 .thumbnails > li {
-  float: left;
+  float: right;
   margin: 0 0 18px 20px;
 }
 .thumbnail {
@@ -2759,10 +2759,10 @@ a.thumbnail:hover {
   height: 18px;
   margin-bottom: 18px;
   background-color: #f9f9f9;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#f5f5f5), to(#f9f9f9));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#f5f5f5), to(#f9f9f9));
   background-image: -moz-linear-gradient(top, #f5f5f5, #f9f9f9);
   background-image: -ms-linear-gradient(top, #f5f5f5, #f9f9f9);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #f9f9f9));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #f5f5f5), color-stop(100%, #f9f9f9));
   background-image: -webkit-linear-gradient(top, #f5f5f5, #f9f9f9);
   background-image: -o-linear-gradient(top, #f5f5f5, #f9f9f9);
   background-image: linear-gradient(top, #f5f5f5, #f9f9f9);
@@ -2780,10 +2780,10 @@ a.thumbnail:hover {
   text-align: center;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #0480be;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#149bdf), to(#0480be));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#149bdf), to(#0480be));
   background-image: -moz-linear-gradient(top, #149bdf, #0480be);
   background-image: -ms-linear-gradient(top, #149bdf, #0480be);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #149bdf), color-stop(100%, #0480be));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #149bdf), color-stop(100%, #0480be));
   background-image: -webkit-linear-gradient(top, #149bdf, #0480be);
   background-image: -o-linear-gradient(top, #149bdf, #0480be);
   background-image: linear-gradient(top, #149bdf, #0480be);
@@ -2821,10 +2821,10 @@ a.thumbnail:hover {
 }
 .progress.danger .bar {
   background-color: #c43c35;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#ee5f5b), to(#c43c35));
   background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
   background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee5f5b), color-stop(100%, #c43c35));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ee5f5b), color-stop(100%, #c43c35));
   background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
   background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
   background-image: linear-gradient(top, #ee5f5b, #c43c35);
@@ -2842,10 +2842,10 @@ a.thumbnail:hover {
 }
 .progress.success .bar {
   background-color: #57a957;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#62c462), to(#57a957));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#62c462), to(#57a957));
   background-image: -moz-linear-gradient(top, #62c462, #57a957);
   background-image: -ms-linear-gradient(top, #62c462, #57a957);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #62c462), color-stop(100%, #57a957));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #62c462), color-stop(100%, #57a957));
   background-image: -webkit-linear-gradient(top, #62c462, #57a957);
   background-image: -o-linear-gradient(top, #62c462, #57a957);
   background-image: linear-gradient(top, #62c462, #57a957);
@@ -2863,10 +2863,10 @@ a.thumbnail:hover {
 }
 .progress.info .bar {
   background-color: #339bb9;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#5bc0de), to(#339bb9));
+  background-image: -khtml-gradient(linear, right top, right bottom, from(#5bc0de), to(#339bb9));
   background-image: -moz-linear-gradient(top, #5bc0de, #339bb9);
   background-image: -ms-linear-gradient(top, #5bc0de, #339bb9);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5bc0de), color-stop(100%, #339bb9));
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #5bc0de), color-stop(100%, #339bb9));
   background-image: -webkit-linear-gradient(top, #5bc0de, #339bb9);
   background-image: -o-linear-gradient(top, #5bc0de, #339bb9);
   background-image: linear-gradient(top, #5bc0de, #339bb9);
@@ -2914,17 +2914,17 @@ a.thumbnail:hover {
 .carousel .item {
   display: none;
   position: relative;
-  -webkit-transition: 0.6s ease-in-out left;
-  -moz-transition: 0.6s ease-in-out left;
-  -ms-transition: 0.6s ease-in-out left;
-  -o-transition: 0.6s ease-in-out left;
-  transition: 0.6s ease-in-out left;
+  -webkit-transition: 0.6s ease-in-out right;
+  -moz-transition: 0.6s ease-in-out right;
+  -ms-transition: 0.6s ease-in-out right;
+  -o-transition: 0.6s ease-in-out right;
+  transition: 0.6s ease-in-out right;
 }
 .carousel .active, .carousel .next, .carousel .prev {
   display: block;
 }
 .carousel .active {
-  left: 0;
+  right: 0;
 }
 .carousel .next, .carousel .prev {
   position: absolute;
@@ -2932,24 +2932,24 @@ a.thumbnail:hover {
   width: 100%;
 }
 .carousel .next {
-  left: 100%;
+  right: 100%;
 }
 .carousel .prev {
-  left: -100%;
+  right: -100%;
 }
 .carousel .next.left, .carousel .prev.right {
-  left: 0;
+  right: 0;
 }
 .carousel .active.left {
-  left: -100%;
+  right: -100%;
 }
 .carousel .active.right {
-  left: 100%;
+  right: 100%;
 }
 .carousel-control {
   position: absolute;
   top: 40%;
-  left: 15px;
+  right: 15px;
   width: 40px;
   height: 40px;
   margin-top: -20px;
@@ -2973,7 +2973,7 @@ a.thumbnail:hover {
   transition: all 0.2s linear;
 }
 .carousel-control.right {
-  left: auto;
+  right: auto;
   right: 15px;
 }
 .carousel-control:hover {
@@ -2985,7 +2985,7 @@ a.thumbnail:hover {
 }
 .carousel-caption {
   position: absolute;
-  left: 0;
+  right: 0;
   right: 0;
   bottom: 0;
   padding: 10px 15px 5px;
@@ -2999,7 +2999,7 @@ a.thumbnail:hover {
   float: right;
 }
 .pull-left {
-  float: left;
+  float: right;
 }
 .hide {
   display: none;
@@ -3018,7 +3018,7 @@ a.thumbnail:hover {
   .navbar .nav {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 180px;
     padding-top: 40px;
     list-style: none;
@@ -3040,7 +3040,7 @@ a.thumbnail:hover {
     display: block;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
   }
   .navbar .nav > .active > a {
     background-color: transparent;
@@ -3053,10 +3053,10 @@ a.thumbnail:hover {
     width: 0;
     height: 0;
     margin-top: 8px;
-    margin-left: 6px;
+    margin-right: 6px;
     text-indent: -99999px;
     vertical-align: top;
-    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
     border-right: 4px solid transparent;
     border-top: 4px solid #ffffff;
     filter: alpha(opacity=100);
@@ -3074,21 +3074,21 @@ a.thumbnail:hover {
     float: none;
     width: auto;
     padding-top: 0;
-    text-align: left;
+    text-align: right;
   }
   .form-horizontal .controls {
-    margin-left: 0;
+    margin-right: 0;
   }
   .form-horizontal .control-list {
     padding-top: 0;
   }
   .form-horizontal .form-actions {
-    padding-left: 0;
+    padding-right: 0;
   }
   .modal {
     position: absolute;
     top: 20px;
-    left: 20px;
+    right: 20px;
     right: 20px;
     width: auto;
     margin: 0;
@@ -3112,7 +3112,7 @@ a.thumbnail:hover {
     padding: 0 20px;
   }
   .row {
-    margin-left: 0;
+    margin-right: 0;
   }
   .row > [class*="span"] {
     float: none;
@@ -3162,40 +3162,40 @@ a.thumbnail:hover {
     width: 748px;
   }
   .offset1 {
-    margin-left: 64px;
+    margin-right: 64px;
   }
   .offset2 {
-    margin-left: 128px;
+    margin-right: 128px;
   }
   .offset3 {
-    margin-left: 192px;
+    margin-right: 192px;
   }
   .offset4 {
-    margin-left: 256px;
+    margin-right: 256px;
   }
   .offset5 {
-    margin-left: 320px;
+    margin-right: 320px;
   }
   .offset6 {
-    margin-left: 384px;
+    margin-right: 384px;
   }
   .offset7 {
-    margin-left: 448px;
+    margin-right: 448px;
   }
   .offset8 {
-    margin-left: 512px;
+    margin-right: 512px;
   }
   .offset9 {
-    margin-left: 576px;
+    margin-right: 576px;
   }
   .offset10 {
-    margin-left: 640px;
+    margin-right: 640px;
   }
   .offset11 {
-    margin-left: 704px;
+    margin-right: 704px;
   }
   .offset12 {
-    margin-left: 768px;
+    margin-right: 768px;
   }
 }
 /*
@@ -3212,17 +3212,17 @@ a.thumbnail:hover {
     width: (@gridColumnWidth * @columnSpan) + (@gridGutterWidth * (@columnSpan - 1));
   }
   .offset(@columnOffset: 1) {
-    margin-left: (@gridColumnWidth * @columnOffset) + (@gridGutterWidth * (@columnOffset - 1)) + @gridGutterWidth;
+    margin-right: (@gridColumnWidth * @columnOffset) + (@gridGutterWidth * (@columnOffset - 1)) + @gridGutterWidth;
   }
 
   .container {
     width: @siteWidth;
   }
   .row {
-    margin-left: @gridGutterWidth * -1;
+    margin-right: @gridGutterWidth * -1;
   }
   [class*="span"] {
-    margin-left: @gridGutterWidth;
+    margin-right: @gridGutterWidth;
   }
 
   // Default columns
