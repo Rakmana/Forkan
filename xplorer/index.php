@@ -142,7 +142,7 @@
 					<li><a href="#about" data-placement="below" rel='twipsy' title="من نحن">من نحن</a></li>
 					<li><a href="#contact" data-placement="below" rel='twipsy' title="إتصل بنا">وصال</a></li>
 					<li class="menu" data-dropdown="dropdown" >
-						<a class="menu" href="#">السور</a>
+						<a class="menu" id="activeSura" href="#">السور</a>
 						<ul class="menu-dropdown" id="suraList" style="height:400px;overflow: auto;">
 							<!--<li><a href="#">Secondary link</a></li>
 							<li><a href="#">Something else here</a></li>
@@ -207,7 +207,7 @@
 
     <script type="text/template" id="aya-template">
       	<% if (aya == 1) { %>
-			<div class="suraHeader">سورة <%= sur %></div>
+			<div class="suraHeader">سورة <%= snm %></div>
 		<% }; %>
 		<span data-placement="above" rel="popover" data-content="<%= txt %>" class="iAya" id="ya<%= yid %>">
         <%= txt %>       

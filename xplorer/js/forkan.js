@@ -41,11 +41,10 @@ $(function(){
 // Aya Model
   var modAya = Backbone.Model.extend({
   // Our basic **Aya** model has [index, sura, aya, text, riwaya, audio  and views] attributes.
-
-    // Default attributes for the todo.
     defaults: {
       yid   : 0,
       sur   : 0,
+      snm   : 0,//sura name (from suras)
       aya   : 0,
       txt   : '',
       rwy   : 0/*,
@@ -53,11 +52,8 @@ $(function(){
 	  views  : 0*/
     },
 
-    // Ensure that each todo created has `content`.
     initialize: function() {
-      //if (!this.get("index")) {
-		//this.destroy();
-      //};
+
 	  //--- make attr more readable then "array[x]
 	  this.set({yid : this.get("yid"),
 	            sur  : this.get("sur"),
@@ -68,7 +64,7 @@ $(function(){
 				
 		//alert(JSON.stringify(this));
     },
-    // Remove this Todo from *localStorage* and delete its view.
+
     clear: function() {
       this.destroy();
     }
@@ -81,33 +77,20 @@ $(function(){
     // Reference to this collection's model.
     model: modAya,
 	  
-	url: function(){
+	/*url: function(){
         //var arg={cls:"q",act:"get",ayaID:1,nbr:17};
-		return "aya/";
-	},
+		return "/aya";
+	},*/
 
 	parse: function(response) {
        return response.dt;
     },
-    // Save all of the todo items under the `"todos"` namespace.
-    //localStorage: new Store("Ayas"),
-
     // Filter down the list of all todo items that are finished.
     /*done: function() {
       return this.filter(function(todo){ return todo.get('done'); });
     },*/
 
-    // Filter down the list to only todo items that are still not finished.
-    /*remaining: function() {
-      return ;//this.without.apply(this, this.done());
-    },*/
 
-    // We keep the Ayas in sequential order, despite being saved by unordered
-    // GUID in the database. This generates the next order number for new items.
-    nextOrder: function() {
-      if (!this.length) return 1;
-      return this.last().get('order') + 1;
-    },
 
     // Ayas are sorted by their original insertion order.
     comparator: function(mod) {
@@ -123,6 +106,7 @@ $(function(){
     tagName:  "span",
     className:"iAyaCon",
 	//el: $(".iAya"),
+	
     // Cache the template function for a single item.
     template: _.template($('#aya-template').html()),
     SideTemplate : _.template($('#side-template').html()),
@@ -130,11 +114,7 @@ $(function(){
     // The DOM events specific to an item.
     events: {
       "hover .iAya"                 : "iHover",
-      "click .iAya"                 : "iFocus",
-      //"focusout .iAya"              : "iBlur",
-      //"dblclick div.todo-content" : "edit",
-      //"click span.todo-destroy"   : "clear",
-      //"keypress .todo-input"      : "updateOnEnter",
+      "click .iAya"                 : "iFocus"
     },
 	
     initialize: function() {
@@ -146,8 +126,13 @@ $(function(){
 
     // Re-render the contents of the todo item.
     render: function() {
+		var aya = this;
+		
+		Forkan.Suras.find(function(sura){
+			if (sura.get('sid') == aya.model.get('sur')) { aya.model.set({'snm':sura.get('nam')});}
+		return (sura.get('sid') == aya.model.get('sur'));});
+			
       $(this.el).html(this.template(this.model.toJSON()));
-	  //this.ya = this.$(".iAya");
       return this;
     },
 
@@ -159,21 +144,19 @@ $(function(){
 
     // On click or focus on Aya.
     iFocus: function() {
-	  $(".iAya").removeClass("ayaActive");
-      $(this.el).find(".iAya").addClass("ayaActive");
-      $("#iside").html(this.SideTemplate(this.model.toJSON()));
+		$(".iAya").removeClass("ayaActive");
+		$(this.el).find(".iAya").addClass("ayaActive");
+		$("#iside").html(this.SideTemplate(this.model.toJSON()));
+		var aya = this;
+		
+		Forkan.Suras.find(function(sura){
+			if (sura.get('sid') == aya.model.get('sur')) { sura.active();}
+			return (sura.get('sid') == aya.model.get('sur'));
+		});
+	  
     },
 
-    // Close the `"editing"` mode, saving changes to the todo.
-    /*close: function() {
-      //this.model.save({content: this.input.val()});
-      $(this.el).removeClass("editing");
-    },*/
 
-    // If you hit `enter`, we're through editing the item.
-    /*updateOnEnter: function(e) {
-      if (e.keyCode == 13) this.close();
-    },*/
     close: function() {
         $(this.el).unbind();
         $(this.el).empty();
@@ -261,7 +244,7 @@ var viewPage = Backbone.View.extend({
 var colPages = Backbone.Collection.extend({
     model : modPage,
     url : function(){
-        return cfg.url()+'page';
+        return '/page';
     },
 	parse: function(response) {
        return response.dt;
@@ -328,7 +311,9 @@ var viewPages = Backbone.View.extend({
 				
 		//alert(JSON.stringify(this));
     },
-    
+    active: function(){
+	    $('#activeSura').html(this.get('nam'));
+	},
     // Remove this Todo from *localStorage* and delete its view.
     clear: function() {
       this.destroy();
@@ -341,9 +326,9 @@ var viewPages = Backbone.View.extend({
 
     model: modSura,
 	  
-	/*url: function(){
-		return '/#';//cfg.url()+"#sura";//+cfg.StartAya+"/nbr=15";
-	},*/
+	url: function(){
+		return '/sura';//+cfg.StartAya+"/nbr=15";
+	},
 
 	parse: function(response) {
        return response.dt;
@@ -377,8 +362,9 @@ var viewPages = Backbone.View.extend({
     select: function() {
         var sura = this.model; 
         Forkan.navigate("aya/"+(sura.get("sta"))+'/to/'+sura.get("ays"), true);
+		this.active();
     },
-	
+ 	
     close: function() {
         $(this.el).unbind();
         $(this.el).remove();
@@ -395,6 +381,7 @@ var viewPages = Backbone.View.extend({
     
     initialize: function() {
         this.model.bind("reset", this.render, this);
+        this.model.bind("active", this.active, this);
     },
     render: function(eventName) {
 		$(this.el).empty();
@@ -404,6 +391,10 @@ var viewPages = Backbone.View.extend({
                 new viewSura({model: iModel}).render().el);
         }, this);
         return this;
+    },
+    active: function() {
+        var sura = this.model; 
+        $('#activeSura').html(sura.get('nam'));
     }
 });
   
@@ -525,15 +516,6 @@ var AppRouter = Backbone.Router.extend({
 	init: function(){
         var self = this;
 		// initialize All object
-        this.Ayas   = new colAyas();
-		this.Ayas.fetch({
-			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/aya/1/to/7',
-			success: function() {
-		    	self.AyasView = new viewAyas({model: self.Ayas});
-				self.AyasView.render();
-				//if (self.requestedId) self.getAya(self.requestedId);
-			}
-		});
 		
         this.Suras  = new colSuras();
 		this.Suras.fetch({
@@ -541,6 +523,16 @@ var AppRouter = Backbone.Router.extend({
 			success: function() {
 		    	self.SurasView = new viewSuras({model: self.Suras});
 				self.SurasView.render();
+				//if (self.requestedId) self.getAya(self.requestedId);
+			}
+		});
+		
+        this.Ayas   = new colAyas();
+		this.Ayas.fetch({
+			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/aya/1/to/7',
+			success: function() {
+		    	self.AyasView = new viewAyas({model: self.Ayas});
+				self.AyasView.render();
 				//if (self.requestedId) self.getAya(self.requestedId);
 			}
 		});
@@ -604,29 +596,20 @@ var AppRouter = Backbone.Router.extend({
 		
 		//if (!this.Ayas){this.init();}
               
-		$("#ipage").slideUp("slow");
+		$("#ipage").animate({right: '-700px'},"slow",function() { $(this).hide() });
+
 
          this.Ayas.fetch({
 				url : cfg.url()+"/aya/"+id+"/to/"+nbr,
                 success: function() {
-				$("#ipage").slideDown();
+				//$("#ipage").slideDown();				
+				$("#ipage").animate({right: '0px'},"slow",function() { $(this).show() });
 		    	/* ; //self.AyasView = new viewAyas({model: self.Ayas});
 				//self.AyasView.render();
                     //if (self.requestedId) self.wineDetails(self.requestedId);*/
             }
         });
-		/*
-		if (this.Ayas)
-		{
-			this.wine = this.wineList.get(id);
-			if (this.wineView) this.wineView.close();
-		    		this.wineView = new WineView({model: this.wine});
-			this.wineView.render();
-		} else {
-			this.requestedId = id;
-			this.list();
-		}
-   */
+
     } ,   
     getPages: function() {
 		var self = this;
@@ -634,7 +617,7 @@ var AppRouter = Backbone.Router.extend({
 		//if (!this.Ayas){this.init();}
               
          this.Pages.fetch({
-				url : cfg.url()+"/aya/"+id+"/to/"+nbr/* ; 
+				url : cfg.hh.url()+"/aya/"+id+"/to/"+nbr/* ; 
                 success: function() {
 				$("#ipage").empty();
 		    	//self.AyasView = new viewAyas({model: self.Ayas});
