@@ -3,4 +3,4 @@
 {% block state %}true{% endblock %}
 {% block error %}[]{% endblock %}
 
-{% block data %}{}{% for surah in suras %},{"sid":"{{ surah.index }}","sta":"{{ surah.start }}","ays":"{{ surah.ayas }}","ord":"{{ surah.order}}","enm":"{{ surah.ename }}","nam":"{{ surah.name }}","typ":"{{ surah.type}}"}{% else %}{% endfor %}{% endblock %}
+{% block data %}{}{% for surah in suras %},["{{ surah.index }}","{{ surah.start }}","{{ surah.ayas }}","{{ surah.order}}","{{ surah.ename }}","{{ surah.name }}","{{ surah.type}}"]{% else %}{% endfor %}{% endblock %}

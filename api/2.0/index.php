@@ -46,15 +46,21 @@ $app->get('/', function() use ($app) {
     metaQuran::init();
 //--------------------------------------------------------------------------------------------
 // Ayas
-$app->get('/(:key)/aya/(:id)/to/(:nbr)', function($key,$id,$nbr) use ($app) {
-	$ayas = ForkanData::getAya(array('id'=>$id,'nbr'=>$nbr,'rw'=>1));
+$app->get('/(:key)/ayas/(:id)/to/(:nbr)', function($key,$id,$nbr) use ($app) {
+	$ayas = ForkanData::getAyas(array('id'=>$id,'nbr'=>$nbr,'rw'=>1));
+
+	$app->render('ayas.json', array('ayas' => $ayas));		
+});
+// Ayas
+$app->get('/(:key)/ayas/page/(:id)', function($key,$id) use ($app) {
+	$ayas = ForkanData::getAyasPerPage(array('id'=>$id,'rw'=>1));
 
 	$app->render('ayas.json', array('ayas' => $ayas));		
 });
 
 // Single Aya
-$app->get('/(:key)/aya/(:id)', function($key,$id) use ($app) {
-	$ayas = ForkanData::getAya(array('id'=>$id,'nbr'=>1,'rw'=>1));
+$app->get('/(:key)/ayas/(:id)', function($key,$id) use ($app) {
+	$ayas = ForkanData::getAyas(array('id'=>$id,'nbr'=>1,'rw'=>1));
 
 	$app->render('ayas.json', array('ayas' => $ayas));		
 });
@@ -64,8 +70,8 @@ $app->get('/(:key)/aya/(:id)', function($key,$id) use ($app) {
 
 //--------------------------------------------------------------------------------------------
 // Suras .
-$app->get('/(:key)/sura', function() use ($app) {
-	$suras = ForkanData::getSura();
+$app->get('/(:key)/suras', function() use ($app) {
+	$suras = ForkanData::getSuras();
 //var_dump($suras);
 	$app->render('suras.json', array('suras' => $suras));	
 });
@@ -73,8 +79,8 @@ $app->get('/(:key)/sura', function() use ($app) {
 
 //--------------------------------------------------------------------------------------------
 // Page .
-$app->get('/(:key)/page', function() use ($app) {
-	$pages = ForkanData::getPage();
+$app->get('/(:key)/pages', function() use ($app) {
+	$pages = ForkanData::getPages();
 //var_dump($suras);
 	$app->render('pages.json', array('pages' => $pages));	
 });
@@ -148,16 +154,6 @@ $app->get('/admin/delete/(:id)', $authCheck, function($id) use ($app) {
 	$app->redirect('/admin');
 });
 
-
-function getConnection() {
-	$dbhost="127.0.0.1";
-	$dbuser="root";
-	$dbpass="1723";
-	$dbname="skybook";
-	$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
-	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	return $dbh;
-};
 
 // Slim Run.
 $app->run();
