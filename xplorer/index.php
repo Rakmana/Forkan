@@ -88,14 +88,16 @@
       .container > .content {
         background-color: #fff;
 		background:#fff url('theme/raky/bodyBg.gif') 0 0 repeat-x;
-        padding: 20px;
-        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+		background-attachment: fixed;
+        padding: 15px;
+        margin: 0 -15px; /* negative indent the amount of the padding to maintain the grid system */
         -webkit-border-radius: 0 0 6px 6px;
            -moz-border-radius: 0 0 6px 6px;
                 border-radius: 0 0 6px 6px;
         -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
                 box-shadow: 0 1px 2px rgba(0,0,0,.15);
+		padding-bottom: 60px;
       }
 
       /* Page header tweaks */
@@ -142,7 +144,7 @@
 					<li><a href="#about" data-placement="below" rel='twipsy' title="من نحن">من نحن</a></li>
 					<li><a href="#contact" data-placement="below" rel='twipsy' title="إتصل بنا">وصال</a></li>
 					<li class="menu" data-dropdown="dropdown" >
-						<a class="menu" href="#">سورة : <span id="activeSura"></span></a>
+						<a class="menu" href="#" data-placement="below" rel='twipsy' title="السورة"> <span id="activeSura"></span></a>
 						<ul class="menu-dropdown" id="suraList" style="height:400px;padding:5px;overflow: auto;">
 							<!--<li><a href="#">Secondary link</a></li>
 							<li><a href="#">Something else here</a></li>
@@ -151,7 +153,7 @@
 						</ul>
 					</li>
 					<li class="menu" data-dropdown="dropdown" >
-						<a class="menu" href="#">الصفحة : <span id="activePage"></span></a>
+						<a class="menu" href="#" data-placement="below" rel='twipsy' title="الصفحة"> <span id="activePage"></span></a>
 						<ul class="menu-dropdown" id="pageList" style="height:400px;padding:5px;overflow: auto;">
 							<!--<li><a href="#">Secondary link</a></li>
 							<li><a href="#">Something else here</a></li>
@@ -218,7 +220,7 @@
       	<% if (aya == 1) { %>
 			<div class="suraHeader">سورة <%= snm %></div>
 		<% }; %>
-		<span  class="iAya" id="ya<%= yid %>">
+		<span  class="iAya" id="ya<%= sur + aya %>">
         <%= txt %>       
 		</span>
 		<span class="label success iAyaSep"><%= aya %></span>
