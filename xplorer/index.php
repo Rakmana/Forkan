@@ -88,14 +88,16 @@
       .container > .content {
         background-color: #fff;
 		background:#fff url('theme/raky/bodyBg.gif') 0 0 repeat-x;
-        padding: 20px;
-        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+		background-attachment: fixed;
+        padding: 15px;
+        margin: 0 -15px; /* negative indent the amount of the padding to maintain the grid system */
         -webkit-border-radius: 0 0 6px 6px;
            -moz-border-radius: 0 0 6px 6px;
                 border-radius: 0 0 6px 6px;
         -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
                 box-shadow: 0 1px 2px rgba(0,0,0,.15);
+		padding-bottom: 60px;
       }
 
       /* Page header tweaks */
@@ -108,7 +110,7 @@
       }
 
       /* Styles you shouldn't keep as they are for displaying this base example only */
-      .content .span10,
+      .content .span14,
       .content .span4 {
         min-height: 500px;
       }
@@ -142,14 +144,23 @@
 					<li><a href="#about" data-placement="below" rel='twipsy' title="من نحن">من نحن</a></li>
 					<li><a href="#contact" data-placement="below" rel='twipsy' title="إتصل بنا">وصال</a></li>
 					<li class="menu" data-dropdown="dropdown" >
-						<a class="menu" id="activeSura" href="#">السور</a>
-						<ul class="menu-dropdown" id="suraList" style="height:400px;overflow: auto;">
+						<a class="menu" href="#" data-placement="below" rel='twipsy' title="السورة"> <span id="activeSura"></span></a>
+						<ul class="menu-dropdown" id="suraList" style="height:400px;padding:5px;overflow: auto;">
 							<!--<li><a href="#">Secondary link</a></li>
 							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Another link</a></li>-->
 						</ul>
 					</li>
+					<li class="menu" data-dropdown="dropdown" >
+						<a class="menu" href="#" data-placement="below" rel='twipsy' title="الصفحة"> <span id="activePage"></span></a>
+						<ul class="menu-dropdown" id="pageList" style="height:400px;padding:5px;overflow: auto;">
+							<!--<li><a href="#">Secondary link</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Another link</a></li>-->
+						</ul>
+					</li>					
 				</ul>
 				<form action="" class="pull-right">
 					<input type="text" placeholder="Search" />
@@ -163,13 +174,15 @@
 	<!-- Forkan App Interface --> 
       <div class="content" id="forkanApp">
       
-        <div class="page-header">
+        <div class="page-header" style="position:fixed;left:0;right:0;bottom:0;">
           <h1>الفرقان <small>نسخة القرآان الكريم على الويب</small></h1>
-
+<div id="iside">
+			
+			</div>
         </div>
         <div class="row">
           
-          <div class="span10">
+          <div class="span14">
            
 			<div class="content scrolled simple">
 				<!-- Page Holder -->
@@ -181,15 +194,12 @@
   
 
           </div>
-          <div class="span4">
-			<!-- Side Holder --> 
-			<div id="iside">
+          <!--<div class="span4">
+			 Side Holder  
 			
-			</div>
 
-			<ul id="pageList" style="height:400px;overflow: auto;"></ul>
 			
-          </div>
+          </div>-->
         </div>
       </div> <!-- /row -->
 
@@ -205,11 +215,12 @@
 
     <!-- Templates -->
 
+    <!--data-placement="above" rel="popover" data-content="<%= txt %>"-->
     <script type="text/template" id="aya-template">
       	<% if (aya == 1) { %>
 			<div class="suraHeader">سورة <%= snm %></div>
 		<% }; %>
-		<span data-placement="above" rel="popover" data-content="<%= txt %>" class="iAya" id="ya<%= yid %>">
+		<span  class="iAya" id="ya<%= sur + aya %>">
         <%= txt %>       
 		</span>
 		<span class="label success iAyaSep"><%= aya %></span>
@@ -222,9 +233,9 @@
     </script>
 	
     <script type="text/template" id="page-template">
-		<li class="iPage" id="pg<%= pid %>">
+		<a href="#" class="iPage" id="pg<%= pid %>">
         <%= pid %>       
-		</li>
+		</a>
     </script>
 
     <script type="text/template" id="side-template">

@@ -21,13 +21,13 @@ $(function(){
  
     var cfg ={};
 	cfg = {
-			ApiServer  : "http://localhost/forkan/api/",
+			ApiServer  : "http://127.0.0.1/forkan/api/",
 			version    : "2.0",
 			key        : "28e336ac6c9423d946ba02d19c6a2632",
 			riwaya     : "1", // riwaya  [1:hafs 2:warch ...]
 			tafseer    : "1", // Tafseer [1:tabari 2:jalalyn ...] 
 			telawa     : "1", // Telawa  [1:Sudais 2:Afasy ...] 
-			StartAya   : "1",
+			StartPage   : "50",
 			NavigationMethod: 0,//[0: (d) Navigation with Quran page(604p), 1: custome per ayas]
             url : function(){
                 return /*'http://localhost/forkan/xplorer/'*/this.ApiServer + this.version +'/'+ this.key ;
@@ -42,20 +42,26 @@ $(function(){
   var modAya = Backbone.Model.extend({
   // Our basic **Aya** model has [index, sura, aya, text, riwaya, audio  and views] attributes.
     defaults: {
-      yid   : 0,
-      sur   : 0,
+      //yid   : 0,
+      //sur   : 0,
       snm   : 0,//sura name (from suras)
-      aya   : 0,
-      txt   : '',
-      rwy   : 0/*,
+      //aya   : 0,
+      //txt   : '',
+      rwy   : 0,/*,
 	  audio  : '',
-	  views  : 0*/
+	  views  : 0,*/
+	  active : false
     },
-
+	// index
+	idAttribute: "yid",
     initialize: function() {
-
+	  if(_.isUndefined(this.get('yid'))){ 
+		//this.destroy();
+		//alert('empty');
+      }
+	  else{
 	  //--- make attr more readable then "array[x]
-	  this.set({yid : this.get("yid"),
+	    this.set({yid : this.get("yid"),
 	            sur  : this.get("sur"),
 	            aya   : this.get("aya"),
 	            txt  : this.get("txt")
@@ -63,8 +69,15 @@ $(function(){
 				});
 				
 		//alert(JSON.stringify(this));
+		}
     },
 
+    focus: function() {
+      this.set({"active" :true});
+    },
+    blur: function() {
+      this.set({"active" :true});
+    },
     clear: function() {
       this.destroy();
     }
@@ -128,9 +141,12 @@ $(function(){
     render: function() {
 		var aya = this;
 		
-		Forkan.Suras.find(function(sura){
-			if (sura.get('sid') == aya.model.get('sur')) { aya.model.set({'snm':sura.get('nam')});}
-		return (sura.get('sid') == aya.model.get('sur'));});
+		/*var pg = Forkan.Pages.find(function(page){
+			(page.get('pid') == aya.model.get('sur')) { aya.model.set({'snm':sura.get('nam')});}
+		return (sura.get('sid') == aya.model.get('sur'));});*/
+		
+		aya.model.set({'snm':Forkan.Suras.get(aya.model.get('sur')).get('nam')});
+		//aya.model.set({'pid':Forkan.Pages.get(aya.model.get('sur')).get('nam')});
 			
       $(this.el).html(this.template(this.model.toJSON()));
       return this;
@@ -147,13 +163,35 @@ $(function(){
 		$(".iAya").removeClass("ayaActive");
 		$(this.el).find(".iAya").addClass("ayaActive");
 		$("#iside").html(this.SideTemplate(this.model.toJSON()));
+		
 		var aya = this;
 		
-		Forkan.Suras.find(function(sura){
-			if (sura.get('sid') == aya.model.get('sur')) { sura.active();}
-			return (sura.get('sid') == aya.model.get('sur'));
+		// change currents breadcrumbe
+		Forkan.Suras.get(aya.model.get('sur')).active();
+		
+		/*var ss = Forkan.Suras.models;
+		var ps = Forkan.Pages.models;
+		//alert(JSON.stringify(ss[5].get('sta')));
+		var p = Forkan.Pages.find(function(page){
+			if(page.get('pid')){
+			var p1 = ps[page.get('pid')]; //console.log('p1='+p1.get('pid'));
+			var p2 = ps[(parseInt(page.get('pid'))+1)]; //console.log('p2='+p1.get('pid'));
+			
+			var sur = ss[page.get('sur')];//console.log('s1='+sur.get('sid'));
+			var sur2= ss[p2.get('sur')];  //console.log('s2='+sur2.get('sid'));
+			
+			var start = parseInt(sur.get('sta'))+parseInt(page.get('aya'))-1;
+			var end = sur2.get('sta') ;
+			//var end   = start + page.get('pid')+1].get('ays');
+			console.log('s:'+start+' e:'+end+' y:'+aya.model.get('yid'));
+			//console.log('p1='+p1.get('pid')+' p2='+p2.get('pid')+' s1='+sur.get('sid')+' s2='+sur2.get('sid'));
+			
+			return (aya.model.get('yid') >= start) && (aya.model.get('yid') < end);
+			}
 		});
-	  
+		//alert(JSON.stringify(p));
+		p.active();
+	  */
     },
 
 
@@ -178,13 +216,18 @@ $(function(){
         this.model.bind("reset", this.render, this);
     },
     render: function(eventName) {
-        $(this.el).empty();
+        //$(this.el).empty();
 		_.each(this.model.models, function(iModel) {
 			
             //TODO: add cfg 4: append vs prepend
-			$(this.el).prepend(
+			
+			if(!_.isUndefined(iModel.get('yid'))){
+			  $(this.el).prepend(
                 new viewAya({model: iModel}).render().el);
+			}
         }, this);
+		//this.last.
+		//$('.iAya').first().click();
         return this;
     }
 });
@@ -201,6 +244,8 @@ var modPage = Backbone.Model.extend({
         "sur":  "",
         "aya":  ""
       }, 
+	// index
+	idAttribute: "pid",
 	  
 	initialize: function() {
       //if (!this.get("index")) {
@@ -223,6 +268,9 @@ var viewPage = Backbone.View.extend({
  
     template: _.template($('#page-template').html()),
  
+    events: {
+      "click .iPage"                 : "select"
+    }, 
     initialize: function() {
         this.model.bind("change", this.render, this);
         this.model.bind("destroy", this.close, this);
@@ -233,6 +281,17 @@ var viewPage = Backbone.View.extend({
         return this;
     },
  
+ 
+    select: function() {
+        var page = this.model; 
+		this.active();
+        Forkan.navigate("ayas/page/"+page.get("pid"), true);
+    },
+    active: function() {
+        var page = this.model; 
+        $('#activePage').html(page.get('pid'));
+    },
+	
     close: function() {
         $(this.el).unbind();
         $(this.el).remove();
@@ -244,7 +303,7 @@ var viewPage = Backbone.View.extend({
 var colPages = Backbone.Collection.extend({
     model : modPage,
     url : function(){
-        return '/page';
+        return 'ayas/page';
     },
 	parse: function(response) {
        return response.dt;
@@ -278,7 +337,7 @@ var viewPages = Backbone.View.extend({
   //[0, 7, 5, 1, 'الفاتحة', "Al-Faatiha", 'The Opening', 'Meccan'],
 
     defaults: {
-      sid  : 0,
+     /*  sid  : 0,
       sta  : 0,
       ays   : 0,
       ord  : 0,
@@ -287,29 +346,34 @@ var viewPages = Backbone.View.extend({
 	  tnm  : '',
 	  enm  : '',
 	  typ   : '',
-      audio  : ''
+      audio  : ''*/
     },
+	// index
+	idAttribute: "sid",
 
     initialize: function() {
-      //if (!this.get("name")) {
-		//this.set({"name": this.defaults.name});
-		
-      //};
+	  if(_.isUndefined(this.get('0'))){ 
+		//this.destroy();
+		//alert('empty');
+      }
+	  else{
 	  //--- make attr more readable then "array[x]
-	  this.set({"sta" : this.get("sta"),
-	            "sid"  : this.get("sid"),
-	            "ays"  : this.get("ays"),
-	            "ord" : this.get("ord"),
+		this.set({"sta" : this.get("1"),
+	            "sid"  : this.get("0"),
+	            "ays"  : this.get("2"),
+	            "ord" : this.get("3"),
 	            //"rukus" : this.get("rukus"),
-	            "nam"  : this.get("nam"),
+	            "nam"  : this.get("5"),
 	            //"tname" : this.get("tname"),
-	            "enm" : this.get("enm"),
-	            "typ"  : this.get("typ")
+	            "enm" : this.get("4"),
+	            "typ"  : this.get("6")
 	            //"audio" : this.get("audio")
 	            //"riwaya": this.get("rw")
 				});
 				
 		//alert(JSON.stringify(this));
+		//alert(JSON.stringify(this.get('5')));
+		}
     },
     active: function(){
 	    $('#activeSura').html(this.get('nam'));
@@ -326,9 +390,9 @@ var viewPages = Backbone.View.extend({
 
     model: modSura,
 	  
-	url: function(){
+	/*url: function(){
 		return '/sura';//+cfg.StartAya+"/nbr=15";
-	},
+	},*/
 
 	parse: function(response) {
        return response.dt;
@@ -361,8 +425,12 @@ var viewPages = Backbone.View.extend({
  
     select: function() {
         var sura = this.model; 
-        Forkan.navigate("aya/"+(sura.get("sta"))+'/to/'+sura.get("ays"), true);
 		this.active();
+        Forkan.navigate("ayas/"+(sura.get("sta"))+'/to/'+sura.get("ays"), true);
+    },
+    active: function() {
+        var sura = this.model; 
+        $('#activeSura').html(sura.get('nam'));
     },
  	
     close: function() {
@@ -387,8 +455,10 @@ var viewPages = Backbone.View.extend({
 		$(this.el).empty();
         _.each(this.model.models, function(iModel) {
             //TODO: add cfg 4: append vs prepend
+			if(!_.isUndefined(iModel.get('sid'))){
 			$(this.el).prepend(
                 new viewSura({model: iModel}).render().el);
+			}
         }, this);
         return this;
     },
@@ -509,44 +579,38 @@ var viewPages = Backbone.View.extend({
 var AppRouter = Backbone.Router.extend({
  
     routes: {
-        ""                : "list",
-        "aya/:id/to/:nbr" : "getAyas",
-        "page"            : "getPages",
+        "ayas/:id/to/:nbr"  : "getAyas",
+        "ayas/page/:id"     : "getAyasPerPage",
+        "ayas/page/:id/:yid": "gotoAyaInPage",
+        "page"              : "getPages",
+        ""                  : "home",
     },
 	init: function(){
         var self = this;
 		// initialize All object
 		
+        this.Ayas   = new colAyas();
         this.Suras  = new colSuras();
 		this.Suras.fetch({
-			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/sura',
+			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/suras',
 			success: function() {
 		    	self.SurasView = new viewSuras({model: self.Suras});
 				self.SurasView.render();
 				//if (self.requestedId) self.getAya(self.requestedId);
-			}
-		});
-		
-        this.Ayas   = new colAyas();
-		this.Ayas.fetch({
-			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/aya/1/to/7',
+		/*self.Ayas.fetch({
+			url : cfg.url()+"/ayas/page/"+cfg.StartPage,
 			success: function() {
 		    	self.AyasView = new viewAyas({model: self.Ayas});
 				self.AyasView.render();
+				// focus in first aya
+				$('.iAya').first().click();
 				//if (self.requestedId) self.getAya(self.requestedId);
 			}
-		});
+		});*/
 		
-        this.Pages  = new colPages();
-		this.Pages.fetch({
-			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/page',
-			success: function() {
-		    	self.PagesView = new viewPages({model: self.Pages});
-				self.PagesView.render();
-				//if (self.requestedId) self.getAya(self.requestedId);
+	Backbone.history.start();
 			}
 		});
-	  
 	  Forkan.Ayas.bind('add',     this.irender);
       Forkan.Ayas.bind('reset',   this.irender);
       Forkan.Ayas.bind('all',     this.irender);
@@ -554,8 +618,25 @@ var AppRouter = Backbone.Router.extend({
       Forkan.Suras.bind('add',     this.irender);
       Forkan.Suras.bind('reset',   this.irender);
       Forkan.Suras.bind('all',     this.irender);
+		
+
+		
+        this.Pages  = new colPages();
+		this.Pages.fetch({
+			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/pages',
+			success: function() {
+			    
+		    	self.PagesView = new viewPages({model: self.Pages});
+				self.PagesView.render();
+				//if (self.requestedId) self.getAya(self.requestedId);
+				$('#pg'+cfg.startPage).click();
+				
+			}
+		});
+	  
 	  
 	},    
+
 	irender: function() {
 	  
             $("*[rel=twipsy]").twipsy({
@@ -571,46 +652,91 @@ var AppRouter = Backbone.Router.extend({
 
 			$('.dropdown').dropdown();
 			
+			
 	},
-    list: function() {
-        //$("#ipage").empty();
-		/*var self = this;		
-*/
-    },
  
-    getAya: function(id) {
-        if (this.Ayas)
-        {
-            this.Aya = this.Ayas.get(id);
-            if (this.AyaView) this.AyaView.close();
-                    this.AyaView = new AyaView({model: this.Aya});
-            this.AyaView.render();
-        } else {
-            this.requestedId = id;
-            this.init();
-        }    
+    home: function() {
+        var self = this;
+		if (!self.requestedId){
+		self.Ayas.fetch({
+			url : cfg.url()+"/ayas/page/"+cfg.StartPage,
+			success: function() {
+		    	self.AyasView = new viewAyas({model: self.Ayas});
+				self.AyasView.render();
+				// focus in first aya
+				$('.iAya').first().click();
+				//if (self.requestedId) self.getAya(self.requestedId);
+			}
+		});}   
     },
     
     getAyas: function(id,nbr) {
 		var self = this;
-		
+		self.requestedId = id;
 		//if (!this.Ayas){this.init();}
               
-		$("#ipage").animate({right: '-700px'},"slow",function() { $(this).hide() });
+		$("#ipage").animate({right: '-500px'},"700",function() { $(this).hide().empty() });
 
 
          this.Ayas.fetch({
-				url : cfg.url()+"/aya/"+id+"/to/"+nbr,
+				url : cfg.url()+"/ayas/"+id+"/to/"+nbr,
                 success: function() {
 				//$("#ipage").slideDown();				
-				$("#ipage").animate({right: '0px'},"slow",function() { $(this).show() });
+				$("#ipage").animate({right: '0px'},"700",function() { $(this).show() });
 		    	/* ; //self.AyasView = new viewAyas({model: self.Ayas});
 				//self.AyasView.render();
                     //if (self.requestedId) self.wineDetails(self.requestedId);*/
             }
         });
 
-    } ,   
+    } , 
+	
+    getAyasPerPage: function(id) {
+		var self = this;
+		
+		self.requestedId = id;
+		//if (!this.Ayas){this.init();}
+              
+		$("#ipage").animate({right: '-500px'},"700",function() { $(this).hide().empty() });
+
+
+         this.Ayas.fetch({
+				url : cfg.url()+"/ayas/page/"+id,
+                success: function() {
+				//$("#ipage").slideDown();				
+				$("#ipage").animate({right: '0px'},"700",function() { $(this).show() });
+
+				// focus in first aya
+				$('.iAya').first().click();
+            }
+        });
+
+    } ,
+	
+    gotoAyaInPage: function(id,yid) {
+		var self = this;
+
+		self.requestedId = id;		
+		//if (!this.Ayas){this.init();}
+              
+		$("#ipage").animate({right: '-500px'},"700",function() { $(this).hide().empty() });
+
+
+         this.Ayas.fetch({
+				url : cfg.url()+"/ayas/page/"+id,
+                success: function() {
+				//$("#ipage").slideDown();				
+				$("#ipage").animate({right: '0px'},"700",function() { $(this).show();
+				$("#ya"+yid).click(); });
+				// focus in aya
+		    	/* ; //self.AyasView = new viewAyas({model: self.Ayas});
+				//self.AyasView.render();
+                    //if (self.requestedId) self.wineDetails(self.requestedId);*/
+            }
+        });
+
+    } ,
+
     getPages: function() {
 		var self = this;
 		
@@ -635,7 +761,6 @@ var Forkan = new AppRouter();
 
 	Forkan.init();
     Forkan.view = new AppView;
-	Backbone.history.start();
 	
 	//var header = new HeaderView();
   // Finally, we kick things off by creating the **App**.

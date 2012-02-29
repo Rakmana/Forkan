@@ -26,13 +26,35 @@ class ForkanData
      * @param string $riwayaID
      * @return array [index,sura,aya,text,riwaya]
      */
-    public static function getAya($args){
+    public static function getAyas($args){
         //index  sura  aya  text  riwaya  view  
 	    return  R::getAll('SELECT * FROM quran WHERE `riwaya` = :rw AND `index` >= :id AND `index` < (:id+:nbr) ',array(':rw'=>1,':id'=>rg('id',$args),':nbr'=> rg('nbr',$args)));
 
        
-    }    
-    public static function getSura(){
+    }  
+    /**
+     * Get Ayas per Page 
+     * 
+     * @param mixed $args = [pageID, riwayaID]
+     * @return array [index,sura,aya,text,riwaya]
+     */
+    public static function getAyasPerPage($args){
+        //index  sura  aya  text  riwaya  view  
+		$p1 = metaQuran::getAllAttr('page',rg('id',$args),'sura');
+		$p2 = metaQuran::getAllAttr('page',rg('id',$args)+1);
+		
+		$start = (ForkanData::getAyaIndex($p1['sura'],$p1['aya'],1));
+		$end   = (ForkanData::getAyaIndex($p2['sura'],$p2['aya'],1))-$start;
+//var_dump($start);
+//exit;
+	    return  R::getAll('SELECT * FROM quran WHERE `riwaya` = :rw AND `index` >= :id AND `index` < (:id+:end) ',array(':rw'=>1,':id'=>$start,':end'=>$end));
+
+       
+    }      
+
+/********************************[ Other functions ]************************************/
+
+    public static function getSuras(){
     // [start, ayas, order, rukus, name, tname, ename, type]
 	//[],
 	//[0, 7, 5, 1, 'الفاتحة', "Al-Faatiha", 'The Opening', 'Meccan'],
@@ -59,7 +81,7 @@ class ForkanData
         return $ht;    
     }
 
-    public static function getPage(){
+    public static function getPages(){
     // [index, sura, aya]   
 	// <page index="1" sura="1" aya="1"/>
         $els = $GLOBALS['WQX']->xml['data']->xpath("//page");
@@ -103,8 +125,8 @@ class ForkanData
      * @return void
      */
     public static function getAyaIndex($sura,$aya,$riwayaID = '1'){
-        $y = dbase::jfetch("SELECT q.index FROM quran q WHERE q.sura = $sura AND q.aya = $aya and q.riwaya = $riwayaID");
-
+        $y = R::getRow("SELECT q.index FROM quran q WHERE q.sura = :sura AND q.aya = :aya and q.riwaya = :riwayaID",array('sura'=>$sura,'aya'=>$aya,'riwayaID'=>$riwayaID));
+//var_dump($y);
         return $y['index'];        
     }
     /**
