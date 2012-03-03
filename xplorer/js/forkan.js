@@ -513,7 +513,7 @@ var viewPages = Backbone.View.extend({
     // of the app doesn't change.
     render: function() {
 	  
-            $("*[rel=twipsy]").twipsy({
+            $("*[rel=twipsy]").tooltip({
                live: true
             });
 			$("*[rel=popover]")
@@ -639,7 +639,7 @@ var AppRouter = Backbone.Router.extend({
 
 	irender: function() {
 	  
-            $("*[rel=twipsy]").twipsy({
+            $("*[rel=twipsy]").tooltip({
                live: true
             });
 			$("*[rel=popover]")
