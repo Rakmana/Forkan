@@ -158,7 +158,7 @@
 				<li><a href="#contact" data-placement="below" rel='twipsy' title="إتصل بنا">وصال</a></li>
 				<li class="dropdown">
 					<a href="#"	class="dropdown-toggle"	data-toggle="dropdown" data-placement="below" rel='twipsy' title="السورة">
-						<span id="activeSura"></span>
+						<span id="activeSura">...</span>
 						<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu" id="suraList" style="height:300px;padding:5px;overflow: auto;">
@@ -166,8 +166,8 @@
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#"	class="dropdown-toggle"	data-toggle="dropdown" data-placement="below" rel='twipsy' title="الصفحة">
-						<span id="activePage"></span>
+					<a href="#"	class="dropdown-toggle"	data-toggle="dropdown" data-placement="below" rel='twipsy' title="الصفحة" >
+						<span id="activePage">...</span>
 						<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu" id="pageList" style="height:300px;padding:5px;overflow: auto;">
@@ -246,7 +246,7 @@
     </script>
 	
     <script type="text/template" id="page-template">
-		<a href="#" class="iPage" id="pg<%= pid %>">
+		<a href="#ayas/page/<%= pid %>" class="iPage" id="pg<%= pid %>">
         <%= pid %>       
 		</a>
     </script>

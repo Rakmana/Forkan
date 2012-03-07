@@ -214,6 +214,7 @@ $(function(){
     
     initialize: function() {
         this.model.bind("reset", this.render, this);
+        this.model.bind("fetch", this.render, this);
     },
     render: function(eventName) {
         //$(this.el).empty();
@@ -514,7 +515,7 @@ var viewPages = Backbone.View.extend({
     render: function() {
 	  
             $("*[rel=twipsy]").tooltip({
-               live: true
+               //live: true
             });
 			$("*[rel=popover]")
                 .popover({
@@ -524,7 +525,7 @@ var viewPages = Backbone.View.extend({
                   e.preventDefault()
                 });
 
-			$('.dropdown').dropdown();
+			$('.dropdown-toggle').dropdown();
 			
 	},
     // Add a single todo item to the list by creating a view for it, and
@@ -579,10 +580,10 @@ var viewPages = Backbone.View.extend({
 var AppRouter = Backbone.Router.extend({
  
     routes: {
-        "ayas/:id/to/:nbr"  : "getAyas",
+        //"ayas/:id/to/:nbr"  : "getAyas",
         "ayas/page/:id"     : "getAyasPerPage",
-        "ayas/page/:id/:yid": "gotoAyaInPage",
-        "page"              : "getPages",
+        //"ayas/page/:id/:yid": "gotoAyaInPage",
+        //"page"              : "getPages",
         ""                  : "home",
     },
 	init: function(){
@@ -640,7 +641,7 @@ var AppRouter = Backbone.Router.extend({
 	irender: function() {
 	  
             $("*[rel=twipsy]").tooltip({
-               live: true
+               //live: true
             });
 			$("*[rel=popover]")
                 .popover({
@@ -650,7 +651,8 @@ var AppRouter = Backbone.Router.extend({
                   e.preventDefault()
                 });
 
-			$('.dropdown').dropdown();
+
+			$('.dropdown-toggle').dropdown();
 			
 			
 	},
@@ -705,7 +707,10 @@ var AppRouter = Backbone.Router.extend({
                 success: function() {
 				//$("#ipage").slideDown();				
 				$("#ipage").animate({right: '0px'},"700",function() { $(this).show() });
-
+		    	
+				if(!self.AyasView) { self.AyasView = new viewAyas({model: self.Ayas});
+				
+				self.AyasView.render();}
 				// focus in first aya
 				$('.iAya').first().click();
             }
