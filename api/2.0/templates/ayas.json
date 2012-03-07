@@ -1,0 +1,6 @@
+{% extends 'main.json' %}
+
+{% block state %}true{% endblock %}
+{% block error %}[]{% endblock %}
+
+{% block data %}{}{% for ayah in ayas %},{"yid":"{{ ayah.index }}","sur":"{{ ayah.sura }}","aya":"{{ ayah.aya}}","txt":"{{ ayah.text }}"}{% else %}{% endfor %}{% endblock %}

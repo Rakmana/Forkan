@@ -1,0 +1,4 @@
+{"dt":[{% block data %} {% endblock %}],
+ "st":{% block state %} {% endblock %},
+ "er":{% block error %} {% endblock %}
+}

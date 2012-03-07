@@ -1,0 +1,6 @@
+{% extends 'main.json' %}
+
+{% block state %}true{% endblock %}
+{% block error %}[]{% endblock %}
+
+{% block data %}{}{% for page in pages %},{"pid":"{{ page.index }}","sur":"{{ page.sura }}","aya":"{{ page.aya}}"}{% else %}{% endfor %}{% endblock %}

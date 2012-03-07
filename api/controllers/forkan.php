@@ -3,6 +3,8 @@
 //include our models
 include_once 'models/forkan.php';
 
+metaQuran::init();
+
 class Forkan
 {
 	private $_params;
@@ -19,22 +21,23 @@ class Forkan
 		//var_dump($items);
 		//return the list
 		return  (array)$items;
-	}
+	}/********************************[ Suras functions ]************************************/
+	 /**
+     * forkan::getSuraFromAya()
+     * 
+     * @param mixed $ayaID
+     * @param string $riwayaID
+     * @return
+     */
+    public function getSuraAction(){
+	    $ayaID = $this->_params['yid'];
+		$riwayaID = '1';
+        $y = dbase::jfetch("SELECT sura FROM quran q WHERE q.index = '$ayaID' and q.riwaya = '$riwayaID'");
+        $s = metaQuran::getAllAttr('sura',$y['sura']);    
+        
+        return (array) $s;    
+    }
 
-	
-	public function deleteAction()
-	{
-		//delete a todo item
-		//retrieve the todo item first
-		$todo = TodoItem::getItem($this->_params['todo_id'], $this->_params['username'], $this->_params['userpass']);
-		
-		//delete the TODO item while passing the username and password to authenticate
-		$todo->delete($this->_params['username'], $this->_params['userpass']);
-		
-		//return the deleted todo item
-		//in array format, for display purposes
-		return $todo->toArray();
-	}
 }
 
 ?>
