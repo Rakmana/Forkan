@@ -583,7 +583,7 @@ var AppRouter = Backbone.Router.extend({
         //"ayas/:id/to/:nbr"  : "getAyas",
         "ayas/page/:id"     : "getAyasPerPage",
         //"ayas/page/:id/:yid": "gotoAyaInPage",
-        //"page"              : "getPages",
+        "page"              : "getPages",
         ""                  : "home",
     },
 	init: function(){
