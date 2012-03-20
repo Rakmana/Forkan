@@ -2,11 +2,11 @@
 <html dir="rtl">
 <head>
 	<title>الفرقان</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 	
 	
 	<link rel="stylesheet" href="theme/raky/css/bootstrap.rtl.css" type="text/css" />
-    <link rel="stylesheet" href="theme/raky/css/bootstrap-responsive.rtl.css" media="all" type="text/css"/>
     <link rel="stylesheet" href="theme/raky/forkan.css" media="all" type="text/css"/>
 	
     <script src="js/LAB.js"></script>
@@ -32,12 +32,12 @@
 		.script("js/bootstrap-scrollspy.js")
 		.script("js/bootstrap-tab.js")
 		.script("js/bootstrap-tooltip.js")
-		.script("js/bootstrap-popover.js")
 
 		.script("js/bootstrap-button.js")
 		.script("js/bootstrap-collapse.js")
 		.script("js/bootstrap-carousel.js")
-		.script("js/bootstrap-typeahead.js")  
+		.script("js/bootstrap-typeahead.js") 
+		.script("js/bootstrap-popover.js") 
 		.script("js/forkan.js");
 
 	</script>
@@ -48,6 +48,16 @@
 	src: url('public/ArTypesetting.eot');
 	src:local('Arabic Typesetting'), 
 		url('public/ArTypesetting.ttf') format('truetype');
+	
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'khouaja';
+	src: url('public/khouaja.ttf');
+	src:local('Samir_Khouaja_Maghribi'), 
+		url('public/khouaja.ttf') format('truetype');
 	
 	font-weight: normal;
 	font-style: normal;
@@ -80,14 +90,12 @@
         background-color: #eee;
       }
       body {
-        /*padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
       }
       .container > footer p {
         text-align: center; /* center align it with the container */
       }
-      .container {
-         /*width: 820px; downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
-      }
+
 
       /* The white background content wrapper */
       .container > .content {
@@ -119,19 +127,11 @@
       .content .span4 {
         min-height: 500px;
       }
-      /* Give a quick and non-cross-browser friendly divider */
-      .content .span4 {
-        margin-right: 0;
-        padding-right: 19px;
-        border-right: 1px solid #eee;
-      }
 
-      .topbar .btn {
-        border: 0;
-      }
 	  
 
 	</style>    
+    <link rel="stylesheet" href="theme/raky/css/bootstrap-responsive.rtl.css" media="all" type="text/css"/>
 	<!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="favicon.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
