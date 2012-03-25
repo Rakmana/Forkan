@@ -169,6 +169,11 @@ $(function(){
 		// change currents breadcrumbe
 		Forkan.Suras.get(aya.model.get('sur')).active();
 		
+		//--- Show Tafseer
+		$("#iTafseerCont").empty().prepend(
+                new viewTafseer({model: Forkan.Tafseers.get(aya.model.get('yid'))}).render().el);
+		
+		
 		/*var ss = Forkan.Suras.models;
 		var ps = Forkan.Pages.models;
 		//alert(JSON.stringify(ss[5].get('sta')));
@@ -233,6 +238,152 @@ $(function(){
     }
 });
 
+			
+//#############################################################################
+//-------------------------------------- Tafseer ----------------------------------
+  
+// Tafseer Model
+  var modTafseer = Backbone.Model.extend({
+  // Our basic **Aya** model has [index, sura, aya, text, riwaya, audio  and views] attributes.
+    defaults: {
+      //yid   : 0,
+      //sur   : 0,
+      snm   : 0,//sura name (from suras)
+      //aya   : 0,
+      //txt   : '',
+      rwy   : 0,/*,
+	  audio  : '',
+	  views  : 0,*/
+	  active : false
+    },
+	// index
+	idAttribute: "tid",
+    initialize: function() {
+	  if(_.isUndefined(this.get('tid'))){ 
+		//this.destroy();
+		//alert('empty');
+      }
+	  else{
+	  //--- make attr more readable then "array[x]
+	    this.set({tid : this.get("tid"),
+	            sur  : this.get("sur"),
+	            aya   : this.get("aya"),
+	            txt  : this.get("txt")
+	            //"riwaya": this.get("rw")
+				});
+				
+		//alert(JSON.stringify(this));
+		}
+    },
+
+    focus: function() {
+      this.set({"active" :true});
+    },
+    blur: function() {
+      this.set({"active" :true});
+    },
+    clear: function() {
+      this.destroy();
+    }
+
+  });
+
+// Tafseer Collection
+  var colTafseers = Backbone.Collection.extend({
+
+    // Reference to this collection's model.
+    model: modTafseer,
+
+	parse: function(response) {
+       return response.dt;
+    },
+
+    // Ayas are sorted by their original insertion order.
+    comparator: function(mod) {
+      return mod.get('order');
+    }
+
+  });
+
+// Tafseer Item View
+  var viewTafseer = Backbone.View.extend({
+
+    //... is a list tag.
+    tagName:  "span",
+    //className:"iTafseerCon",
+	//el: $("#iTafseerCont"),
+	
+    // Cache the template function for a single item.
+    template: _.template($('#tafseer-template').html()),
+    //SideTemplate : _.template($('#side-template').html()),
+
+    // The DOM events specific to an item.
+    events: {
+      //"hover .iAya"                 : "iHover",
+      //"click .iAya"                 : "iFocus"
+    },
+	
+    initialize: function() {
+      _.bindAll(this, 'render', 'close'/*, 'remove'*/);
+      this.model.bind('change', this.render);
+      this.model.bind('destroy', this.remove);
+
+    },
+
+    // Re-render the contents of the todo item.
+    render: function() {
+		var Tafseer = this;
+		
+		/*var pg = Forkan.Pages.find(function(page){
+			(page.get('pid') == aya.model.get('sur')) { aya.model.set({'snm':sura.get('nam')});}
+		return (sura.get('sid') == aya.model.get('sur'));});*/
+		
+		//aya.model.set({'snm':Forkan.Suras.get(aya.model.get('sur')).get('nam')});
+		//aya.model.set({'pid':Forkan.Pages.get(aya.model.get('sur')).get('nam')});
+			
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    },
+
+
+    close: function() {
+        $(this.el).unbind();
+        $(this.el).empty();
+    },
+    // Remove the item, destroy the model.
+    clear: function() {
+      this.model.clear();
+    }
+
+  });
+
+// maybe add AyasView 4 search result  
+
+// Ayas List View
+/*  var viewTafseers = Backbone.View.extend({
+    el: $('#ipage'),
+    
+    initialize: function() {
+        this.model.bind("reset", this.render, this);
+        this.model.bind("fetch", this.render, this);
+    },
+    render: function(eventName) {
+        //$(this.el).empty();
+		_.each(this.model.models, function(iModel) {
+			
+            //TODO: add cfg 4: append vs prepend
+			
+			if(!_.isUndefined(iModel.get('yid'))){
+			  $(this.el).prepend(
+                new viewAya({model: iModel}).render().el);
+			}
+        }, this);
+		//this.last.
+		//$('.iAya').first().click();
+        return this;
+    }
+});
+*/
 
 //#############################################################################
 //---------------------------------- Pages ------------------------------------
@@ -584,6 +735,7 @@ var AppRouter = Backbone.Router.extend({
         "ayas/page/:id"     : "getAyasPerPage",
         //"ayas/page/:id/:yid": "gotoAyaInPage",
         "page"              : "getPages",
+        "tafseer"           : "getTafseers",
         ""                  : "home",
     },
 	init: function(){
@@ -591,6 +743,7 @@ var AppRouter = Backbone.Router.extend({
 		// initialize All object
 		
         this.Ayas   = new colAyas();
+        this.Tafseers=new colTafseers();
         this.Suras  = new colSuras();
 		this.Suras.fetch({
 			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/suras',
@@ -701,8 +854,8 @@ var AppRouter = Backbone.Router.extend({
               
 		$("#ipage").animate({right: '-500px'},"700",function() { $(this).hide().empty() });
 
-
-         this.Ayas.fetch({
+		//--- get Ayas
+        this.Ayas.fetch({
 				url : cfg.url()+"/ayas/page/"+id,
                 success: function() {
 				//$("#ipage").slideDown();				
@@ -714,6 +867,12 @@ var AppRouter = Backbone.Router.extend({
 				// focus in first aya
 				$('.iAya').first().click();
             }
+        });  
+		
+		//--- get Tafseer
+		this.Tafseers.fetch({
+				url : cfg.url()+"/tafseer/page/"+id,
+                success: function() { }
         });
 
     } ,

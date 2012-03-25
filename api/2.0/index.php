@@ -51,13 +51,19 @@ $app->get('/(:key)/ayas/(:id)/to/(:nbr)', function($key,$id,$nbr) use ($app) {
 
 	$app->render('ayas.json', array('ayas' => $ayas));		
 });
-// Ayas
+// Ayas Per Page
 $app->get('/(:key)/ayas/page/(:id)', function($key,$id) use ($app) {
 	$ayas = ForkanData::getAyasPerPage(array('id'=>$id,'rw'=>1));
 
 	$app->render('ayas.json', array('ayas' => $ayas));		
 });
 
+// Tafseer Per Page
+$app->get('/(:key)/tafseer/page/(:id)', function($key,$id) use ($app) {
+	$tafseer = ForkanData::getTafseerPerPage(array('id'=>$id,'rw'=>1));
+
+	$app->render('tafseer.json', array('tafseers' => $tafseer));		
+});
 // Single Aya
 $app->get('/(:key)/ayas/(:id)', function($key,$id) use ($app) {
 	$ayas = ForkanData::getAyas(array('id'=>$id,'nbr'=>1,'rw'=>1));
@@ -69,7 +75,7 @@ $app->get('/(:key)/ayas/(:id)', function($key,$id) use ($app) {
 
 
 //--------------------------------------------------------------------------------------------
-// Suras .
+// Suras list .
 $app->get('/(:key)/suras', function() use ($app) {
 	$suras = ForkanData::getSuras();
 //var_dump($suras);
@@ -78,7 +84,7 @@ $app->get('/(:key)/suras', function() use ($app) {
 
 
 //--------------------------------------------------------------------------------------------
-// Page .
+// Pages list .
 $app->get('/(:key)/pages', function() use ($app) {
 	$pages = ForkanData::getPages();
 //var_dump($suras);

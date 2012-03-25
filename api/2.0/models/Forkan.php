@@ -50,7 +50,26 @@ class ForkanData
 	    return  R::getAll('SELECT * FROM quran WHERE `riwaya` = :rw AND `index` >= :id AND `index` < (:id+:end) ',array(':rw'=>1,':id'=>$start,':end'=>$end));
 
        
-    }      
+    } 
+    /**
+     * Get Tafseer per Page 
+     * 
+     * @param mixed $args = [pageID, riwayaID]
+     * @return array [index,sura,aya,text,riwaya]
+     */
+    public static function getTafseerPerPage($args){
+        //index  sura  aya  text  riwaya  view  
+		$p1 = metaQuran::getAllAttr('page',rg('id',$args),'sura');
+		$p2 = metaQuran::getAllAttr('page',rg('id',$args)+1);
+		
+		$start = (ForkanData::getAyaIndex($p1['sura'],$p1['aya'],1));
+		$end   = (ForkanData::getAyaIndex($p2['sura'],$p2['aya'],1))-$start;
+//var_dump($start);
+//exit;
+	    return  R::getAll('SELECT * FROM tafseer WHERE `tafseerID` = :TF AND `index` >= :id AND `index` < (:id+:end) ',array(':TF'=>1,':id'=>$start,':end'=>$end));
+
+       
+    }     
 
 /********************************[ Other functions ]************************************/
 

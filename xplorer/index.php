@@ -187,11 +187,8 @@
 	<!-- Forkan App Interface --> 
       <div class="content" id="forkanApp">
       
-        <div class="page-header" style="position:fixed;left:0;right:0;bottom:0;">
-          <h1>الفرقان <small>نسخة القرآان الكريم على الويب</small></h1>
-<div id="iside">
-			
-			</div>
+        <div id="iTafseerCont" class="page-header" style="position:fixed;left:0;right:0;bottom:0;">
+
         </div>
         <div class="row">
           
@@ -237,6 +234,13 @@
         <%= txt %>       
 		</span>
 		<span class="label success iAyaSep"><%= aya %></span>
+    </script>
+
+    <script type="text/template" id="tafseer-template">
+		<span class="iTafseer" id="tf<%= sur + aya %>">
+        <%= txt %>       
+		</span>
+		
     </script>
     
     <script type="text/template" id="sura-template">
