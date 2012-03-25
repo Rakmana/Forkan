@@ -162,7 +162,7 @@ $(function(){
     iFocus: function() {
 		$(".iAya").removeClass("ayaActive");
 		$(this.el).find(".iAya").addClass("ayaActive");
-		$("#iside").html(this.SideTemplate(this.model.toJSON()));
+		//$("#iside").html(this.SideTemplate(this.model.toJSON()));
 		
 		var aya = this;
 		
@@ -172,31 +172,7 @@ $(function(){
 		//--- Show Tafseer
 		$("#iTafseerCont").empty().prepend(
                 new viewTafseer({model: Forkan.Tafseers.get(aya.model.get('yid'))}).render().el);
-		
-		
-		/*var ss = Forkan.Suras.models;
-		var ps = Forkan.Pages.models;
-		//alert(JSON.stringify(ss[5].get('sta')));
-		var p = Forkan.Pages.find(function(page){
-			if(page.get('pid')){
-			var p1 = ps[page.get('pid')]; //console.log('p1='+p1.get('pid'));
-			var p2 = ps[(parseInt(page.get('pid'))+1)]; //console.log('p2='+p1.get('pid'));
-			
-			var sur = ss[page.get('sur')];//console.log('s1='+sur.get('sid'));
-			var sur2= ss[p2.get('sur')];  //console.log('s2='+sur2.get('sid'));
-			
-			var start = parseInt(sur.get('sta'))+parseInt(page.get('aya'))-1;
-			var end = sur2.get('sta') ;
-			//var end   = start + page.get('pid')+1].get('ays');
-			console.log('s:'+start+' e:'+end+' y:'+aya.model.get('yid'));
-			//console.log('p1='+p1.get('pid')+' p2='+p2.get('pid')+' s1='+sur.get('sid')+' s2='+sur2.get('sid'));
-			
-			return (aya.model.get('yid') >= start) && (aya.model.get('yid') < end);
-			}
-		});
-		//alert(JSON.stringify(p));
-		p.active();
-	  */
+
     },
 
 
@@ -315,7 +291,6 @@ $(function(){
 	
     // Cache the template function for a single item.
     template: _.template($('#tafseer-template').html()),
-    //SideTemplate : _.template($('#side-template').html()),
 
     // The DOM events specific to an item.
     events: {
@@ -332,15 +307,7 @@ $(function(){
 
     // Re-render the contents of the todo item.
     render: function() {
-		var Tafseer = this;
-		
-		/*var pg = Forkan.Pages.find(function(page){
-			(page.get('pid') == aya.model.get('sur')) { aya.model.set({'snm':sura.get('nam')});}
-		return (sura.get('sid') == aya.model.get('sur'));});*/
-		
-		//aya.model.set({'snm':Forkan.Suras.get(aya.model.get('sur')).get('nam')});
-		//aya.model.set({'pid':Forkan.Pages.get(aya.model.get('sur')).get('nam')});
-			
+
       $(this.el).html(this.template(this.model.toJSON()));
       return this;
     },
