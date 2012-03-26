@@ -59,8 +59,8 @@ $app->get('/(:key)/ayas/page/(:id)', function($key,$id) use ($app) {
 });
 
 // Tafseer Per Page
-$app->get('/(:key)/tafseer/page/(:id)', function($key,$id) use ($app) {
-	$tafseer = ForkanData::getTafseerPerPage(array('id'=>$id,'rw'=>1));
+$app->get('/(:key)/tafseer/(:tid)/page/(:id)', function($key,$tid,$id) use ($app) {
+	$tafseer = ForkanData::getTafseerPerPage(array('id'=>$id,'tid'=>$tid));
 
 	$app->render('tafseer.json', array('tafseers' => $tafseer));		
 });

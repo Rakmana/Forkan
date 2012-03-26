@@ -153,11 +153,11 @@
 
           <div class="nav-collapse">
             <ul class="nav">
-				<li class="active"><a href="/" data-placement="below" rel='twipsy' title="الصفحة الرئيسية">الرئيسية</a></li>
-				<li><a href="#about" data-placement="below" rel='twipsy' title="من نحن">من نحن</a></li>
-				<li><a href="#contact" data-placement="below" rel='twipsy' title="إتصل بنا">وصال</a></li>
+				<li class="active"><a href="/" data-placement="below" rel="twipsy" title="الصفحة الرئيسية">الرئيسية</a></li>
+				<li><a href="#about" data-placement="below" rel="twipsy" title="من نحن">من نحن</a></li>
+				<li><a href="#contact" data-placement="below" rel="twipsy" title="إتصل بنا">وصال</a></li>
 				<li class="dropdown">
-					<a href="#"	class="dropdown-toggle"	data-toggle="dropdown" data-placement="below" rel='twipsy' title="السورة">
+					<a href="#"	class="dropdown-toggle"	data-toggle="dropdown" data-placement="below" rel="twipsy" title="السورة">
 						<span id="activeSura">...</span>
 						<b class="caret"></b>
 					</a>
@@ -166,7 +166,7 @@
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#"	class="dropdown-toggle"	data-toggle="dropdown" data-placement="below" rel='twipsy' title="الصفحة" >
+					<a href="#"	class="dropdown-toggle"	data-toggle="dropdown" data-placement="below" rel="twipsy" title="الصفحة" >
 						<span id="activePage">...</span>
 						<b class="caret"></b>
 					</a>

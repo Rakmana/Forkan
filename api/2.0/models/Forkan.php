@@ -66,7 +66,7 @@ class ForkanData
 		$end   = (ForkanData::getAyaIndex($p2['sura'],$p2['aya'],1))-$start;
 //var_dump($start);
 //exit;
-	    return  R::getAll('SELECT * FROM tafseer WHERE `tafseerID` = :TF AND `index` >= :id AND `index` < (:id+:end) ',array(':TF'=>1,':id'=>$start,':end'=>$end));
+	    return  R::getAll('SELECT * FROM tafseer WHERE `tafseerID` = :TF AND `index` >= :id AND `index` < (:id+:end) ',array(':TF'=>rg('tid',$args),':id'=>$start,':end'=>$end));
 
        
     }     

@@ -397,6 +397,7 @@ var viewPage = Backbone.View.extend({
  
     render: function(eventName) {
         $(this.el).html(this.template(this.model.toJSON()));
+
         return this;
     },
  
@@ -590,20 +591,9 @@ var viewPages = Backbone.View.extend({
   
   // The Application
   // ---------------
-//var Ayas = new colAyas;
-//var Suras = new colSuras;
-//var Ayas = new colAyas;
-  // Our overall **AppView** is the top-level piece of UI.
   var AppView = Backbone.View.extend({
 
-    // Instead of generating a new element, bind to the existing skeleton of
-    // the App already present in the HTML.
     el: $("#forkanApp"),
-
-    // Our template for the line of statistics at the bottom of the app.
-    //statsTemplate: _.template($('#stats-template').html()),
-
-    // Delegated events for creating new items, and clearing completed ones.
     events: {
       //"keypress #new-todo":  "createOnEnter",
       //"keyup #new-todo":     "showTooltip",
@@ -612,19 +602,6 @@ var viewPages = Backbone.View.extend({
     },
 
     initialize: function() {
-      //_.bindAll(this, 'addAya', 'addAyas', 'addSura', 'addSuras', 'render');/, 'toggleAllComplete'
-
-      //this.input = this.$("#new-todo");
-      //this.allCheckbox = this.$(".mark-all-done")[0];
-
-      /*Forkan.Ayas.bind('add',     this.render);
-      Forkan.Ayas.bind('reset',   this.render);
-      Forkan.Ayas.bind('all',     this.render);
-      
-      Forkan.Suras.bind('add',     this.render);
-      Forkan.Suras.bind('reset',   this.render);
-      Forkan.Suras.bind('all',     this.render);*/
-
       
     },
 
@@ -645,49 +622,8 @@ var viewPages = Backbone.View.extend({
 
 			$('.dropdown-toggle').dropdown();
 			
-	},
-    // Add a single todo item to the list by creating a view for it, and
-    // appending its element to the `<ul>`.
-    addAya: function(aya) {
-      var view = new viewAya({model: aya});
-      this.$("#ipage").prepend(view.render().el);
-    },
+	}
 
-    // Add all items in the **Todos** collection at once.
-    addAyas: function() {
-      Ayas.each(this.addAya);
-    },
-    // Add a single todo item to the list by creating a view for it, and
-    // appending its element to the `<ul>`.
-    addSura: function(sura) {
-      var view = new viewSura({model: sura});
-      $("#suraList").append(view.render().el);
-      
-    },
-
-    // Add all items in the **Todos** collection at once.
-    addSuras: function() {
-      Suras.each(this.addSura);
-    },
-
-    // Generate the attributes for a new Todo item.
-    newAttributes: function() {
-
-    }
-
-
-
-    // Lazily show the tooltip that tells you to press `enter` to save
-    // a new todo item, after one second.
-    /*showTooltip: function(e) {
-      var tooltip = this.$(".ui-tooltip-top");
-      var val = this.input.val();
-      tooltip.fadeOut();
-      if (this.tooltipTimeout) clearTimeout(this.tooltipTimeout);
-      if (val == '' || val == this.input.attr('placeholder')) return;
-      var show = function(){ tooltip.show().fadeIn(); };
-      this.tooltipTimeout = _.delay(show, 1000);
-    },*/
 
 
   });
@@ -698,11 +634,9 @@ var viewPages = Backbone.View.extend({
 var AppRouter = Backbone.Router.extend({
  
     routes: {
-        //"ayas/:id/to/:nbr"  : "getAyas",
         "ayas/page/:id"     : "getAyasPerPage",
-        //"ayas/page/:id/:yid": "gotoAyaInPage",
-        "page"              : "getPages",
-        "tafseer"           : "getTafseers",
+        //"page"              : "getPages",
+        //"tafseer"           : "getTafseers",
         ""                  : "home",
     },
 	init: function(){
@@ -717,28 +651,15 @@ var AppRouter = Backbone.Router.extend({
 			success: function() {
 		    	self.SurasView = new viewSuras({model: self.Suras});
 				self.SurasView.render();
-				//if (self.requestedId) self.getAya(self.requestedId);
-		/*self.Ayas.fetch({
-			url : cfg.url()+"/ayas/page/"+cfg.StartPage,
-			success: function() {
-		    	self.AyasView = new viewAyas({model: self.Ayas});
-				self.AyasView.render();
-				// focus in first aya
-				$('.iAya').first().click();
-				//if (self.requestedId) self.getAya(self.requestedId);
-			}
-		});*/
-		
-	Backbone.history.start();
 			}
 		});
-	  Forkan.Ayas.bind('add',     this.irender);
-      Forkan.Ayas.bind('reset',   this.irender);
-      Forkan.Ayas.bind('all',     this.irender);
+		Forkan.Ayas.bind('add',     this.irender);
+		Forkan.Ayas.bind('reset',   this.irender);
+		Forkan.Ayas.bind('all',     this.irender);
       
-      Forkan.Suras.bind('add',     this.irender);
-      Forkan.Suras.bind('reset',   this.irender);
-      Forkan.Suras.bind('all',     this.irender);
+		Forkan.Suras.bind('add',     this.irender);
+		Forkan.Suras.bind('reset',   this.irender);
+		Forkan.Suras.bind('all',     this.irender);
 		
 
 		
@@ -749,6 +670,7 @@ var AppRouter = Backbone.Router.extend({
 			    
 		    	self.PagesView = new viewPages({model: self.Pages});
 				self.PagesView.render();
+				Backbone.history.start();
 				//if (self.requestedId) self.getAya(self.requestedId);
 				$('#pg'+cfg.startPage).click();
 				
@@ -760,9 +682,9 @@ var AppRouter = Backbone.Router.extend({
 
 	irender: function() {
 	  
-            $("*[rel=twipsy]").tooltip({
+            //$(".twipsy").tooltip({
                //live: true
-            });
+            //});
 			$("*[rel=popover]")
                 .popover({
                   offset: 10
@@ -778,18 +700,8 @@ var AppRouter = Backbone.Router.extend({
 	},
  
     home: function() {
-        var self = this;
-		if (!self.requestedId){
-		self.Ayas.fetch({
-			url : cfg.url()+"/ayas/page/"+cfg.StartPage,
-			success: function() {
-		    	self.AyasView = new viewAyas({model: self.Ayas});
-				self.AyasView.render();
-				// focus in first aya
-				$('.iAya').first().click();
-				//if (self.requestedId) self.getAya(self.requestedId);
-			}
-		});}   
+        this.getAyasPerPage(cfg.StartPage);
+ 
     },
     
     getAyas: function(id,nbr) {
@@ -815,32 +727,44 @@ var AppRouter = Backbone.Router.extend({
 	
     getAyasPerPage: function(id) {
 		var self = this;
+		// TODO: add validator for page existance
+		if(!self.Pages.get(id)){
+			$('<div class="modal"><div class="modal-header"><a class="close" data-dismiss="modal">×</a>    <h3>تنبيه</h3></div> <div class="modal-body"><p> لم يتم العثور على الصفحة المطلوبة ('+id+') ! </p></div><div class="modal-footer"><a href="#" class="btn btn-primary">إغلاق</a></div></div>').modal();
+			
+			id = cfg.StartPage;
+		}
 		
 		self.requestedId = id;
 		//if (!this.Ayas){this.init();}
               
-		$("#ipage").animate({right: '-500px'},"700",function() { $(this).hide().empty() });
+		//$("#ipage").animate({right: '-500px'},"700",function() { $(this).hide().empty() });
+		$("#ipage").animate({"width": "toggle", "opacity": "toggle"}, 300,function() { $(this).hide().empty() });
 
 		//--- get Ayas
         this.Ayas.fetch({
 				url : cfg.url()+"/ayas/page/"+id,
                 success: function() {
-				//$("#ipage").slideDown();				
-				$("#ipage").animate({right: '0px'},"700",function() { $(this).show() });
+				
+				
+				$('#activePage').html(id);
+				
+				$("#ipage").animate({"width": "toggle", "opacity": "toggle"}, 600,function() { $(this).show() });	
+				//$("#ipage").animate({right: '0px'},"700",function() { $(this).show() });
 		    	
 				if(!self.AyasView) { self.AyasView = new viewAyas({model: self.Ayas});
+				self.AyasView.render();
+				}
 				
-				self.AyasView.render();}
-				// focus in first aya
-				$('.iAya').first().click();
+				//--- get Tafseer
+				self.Tafseers.fetch({
+						url : cfg.url()+"/tafseer/"+cfg.tafseer+"/page/"+id,
+						success: function() {
+						// focus in first aya
+						$('.iAya').first().click(); }
+				});
             }
         });  
 		
-		//--- get Tafseer
-		this.Tafseers.fetch({
-				url : cfg.url()+"/tafseer/page/"+id,
-                success: function() { }
-        });
 
     } ,
 	
