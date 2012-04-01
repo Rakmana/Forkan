@@ -729,9 +729,12 @@ var AppRouter = Backbone.Router.extend({
 		var self = this;
 		// TODO: add validator for page existance
 		if(!self.Pages.get(id)){
-			$('<div class="modal"><div class="modal-header"><a class="close" data-dismiss="modal">×</a>    <h3>تنبيه</h3></div> <div class="modal-body"><p> لم يتم العثور على الصفحة المطلوبة ('+id+') ! </p></div><div class="modal-footer"><a href="#" class="btn btn-primary">إغلاق</a></div></div>').modal();
+		//<a class="close" data-dismiss="modal">×</a>
+			$('<div class="modal"><div class="modal-header">    <h3>تنبيه</h3></div> <div class="modal-body"><p> لم يتم العثور على الصفحة المطلوبة ('+id+') ! </p></div><div class="modal-footer"><a href="#" class="btn btn-primary" data-dismiss="modal">إغلاق</a></div></div>').modal();
 			
-			id = cfg.StartPage;
+			//id = cfg.StartPage;
+			Forkan.navigate("", true);
+			return false;
 		}
 		
 		self.requestedId = id;
