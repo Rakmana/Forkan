@@ -651,6 +651,7 @@ var AppRouter = Backbone.Router.extend({
 			success: function() {
 		    	self.SurasView = new viewSuras({model: self.Suras});
 				self.SurasView.render();
+		$('.scroller').jScrollPane();
 			}
 		});
 		Forkan.Ayas.bind('add',     this.irender);
@@ -673,9 +674,11 @@ var AppRouter = Backbone.Router.extend({
 				Backbone.history.start();
 				//if (self.requestedId) self.getAya(self.requestedId);
 				$('#pg'+cfg.startPage).click();
+		$('.scroller').jScrollPane();
 				
 			}
 		});
+		
 	  
 	  
 	},    
@@ -695,6 +698,8 @@ var AppRouter = Backbone.Router.extend({
 
 
 			$('.dropdown-toggle').dropdown();
+			
+	
 			
 			
 	},
@@ -819,6 +824,7 @@ var Forkan = new AppRouter();
 
 	Forkan.init();
     Forkan.view = new AppView;
+
 	
 	//var header = new HeaderView();
   // Finally, we kick things off by creating the **App**.
