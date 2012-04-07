@@ -21,7 +21,8 @@ $(function(){
  
     var cfg ={};
 	cfg = {
-			ApiServer  : "http://127.0.0.1/forkan/api/",
+			BaseURL	   : location.protocol+"//"+location.host,	
+			ApiServer  : location.protocol+"//"+location.host+"/forkan/api/",
 			version    : "2.0",
 			key        : "28e336ac6c9423d946ba02d19c6a2632",
 			riwaya     : "1", // riwaya  [1:hafs 2:warch ...]
@@ -647,7 +648,7 @@ var AppRouter = Backbone.Router.extend({
         this.Tafseers=new colTafseers();
         this.Suras  = new colSuras();
 		this.Suras.fetch({
-			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/suras',
+			url : cfg.url()+'/suras',
 			success: function() {
 		    	self.SurasView = new viewSuras({model: self.Suras});
 				self.SurasView.render();
@@ -666,7 +667,7 @@ var AppRouter = Backbone.Router.extend({
 		
         this.Pages  = new colPages();
 		this.Pages.fetch({
-			url : cfg.ApiServer + cfg.version +'/'+ cfg.key+'/pages',
+			url : cfg.url()+'/pages',
 			success: function() {
 			    
 		    	self.PagesView = new viewPages({model: self.Pages});
