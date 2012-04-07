@@ -9,6 +9,13 @@
 	<link rel="stylesheet" href="theme/raky/css/bootstrap.rtl.css" type="text/css" />
     <link rel="stylesheet" href="theme/raky/forkan.css" media="all" type="text/css"/>
 	
+	<!-- styles needed by jScrollPane - include in your own sites -->
+	<link type="text/css" href="theme/raky/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+	<!-- the styles for the lozenge theme 
+	<link type="text/css" href="theme/raky/css/jquery.jscrollpane.lozenge.css" rel="stylesheet" media="all" />-->
+	
+	
+	
     <script src="js/LAB.js"></script>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -37,11 +44,17 @@
 		.script("js/bootstrap-collapse.js")
 		.script("js/bootstrap-carousel.js")
 		.script("js/bootstrap-typeahead.js") 
-		.script("js/bootstrap-popover.js") 
+		.script("js/bootstrap-popover.js")
+		
+	//<!-- the mousewheel plugin -->
+		.script("js/jquery.mousewheel.js") 
+	//<!-- the jScrollPane script -->
+		//.script("js/jquery.jscrollpane.min.js") 
+		
+		
 		.script("js/forkan.js");
 
 	</script>
-	
 	<style>
 @font-face {
 	font-family: 'ArType';
@@ -128,7 +141,14 @@
         min-height: 500px;
       }
 
-	  
+	/* Styles specific to this particular page */
+	#suraList, #pageList
+	{
+		overflow: auto;
+		width: 100%;
+		height: 300px;
+		padding:5px;
+	}
 
 	</style>    
     <link rel="stylesheet" href="theme/raky/css/bootstrap-responsive.rtl.css" media="all" type="text/css"/>
@@ -138,8 +158,10 @@
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
 </head>
 <body> 
+
 	<div class="navbar navbar-fixed-top">
 
       <div class="navbar-inner">
@@ -161,7 +183,7 @@
 						<span id="activeSura">...</span>
 						<b class="caret"></b>
 					</a>
-					<ul class="dropdown-menu" id="suraList" style="height:300px;padding:5px;overflow: auto;">
+					<ul class="dropdown-menu scroller" id="suraList">
 					
 					</ul>
 				</li>
@@ -170,7 +192,7 @@
 						<span id="activePage">...</span>
 						<b class="caret"></b>
 					</a>
-					<ul class="dropdown-menu" id="pageList" style="height:300px;padding:5px;overflow: auto;">
+					<ul class="dropdown-menu scroller" id="pageList">
 					
 					</ul>
 				</li>
