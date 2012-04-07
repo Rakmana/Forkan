@@ -49,7 +49,7 @@
 	//<!-- the mousewheel plugin -->
 		.script("js/jquery.mousewheel.js") 
 	//<!-- the jScrollPane script -->
-		.script("js/jquery.jscrollpane.min.js") 
+		//.script("js/jquery.jscrollpane.min.js") 
 		
 		
 		.script("js/forkan.js");
@@ -144,10 +144,10 @@
 	/* Styles specific to this particular page */
 	#suraList, #pageList
 	{
+		overflow: auto;
 		width: 100%;
 		height: 300px;
 		padding:5px;
-		overflow: auto;
 	}
 
 	</style>    

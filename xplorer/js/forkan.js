@@ -652,7 +652,7 @@ var AppRouter = Backbone.Router.extend({
 			success: function() {
 		    	self.SurasView = new viewSuras({model: self.Suras});
 				self.SurasView.render();
-		$('.scroller').jScrollPane();
+		//$('.scroller').jScrollPane();
 			}
 		});
 		Forkan.Ayas.bind('add',     this.irender);
@@ -675,7 +675,7 @@ var AppRouter = Backbone.Router.extend({
 				Backbone.history.start();
 				//if (self.requestedId) self.getAya(self.requestedId);
 				$('#pg'+cfg.startPage).click();
-		$('.scroller').jScrollPane();
+		//$('.scroller').jScrollPane();
 				
 			}
 		});
