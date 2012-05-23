@@ -1,6 +1,6 @@
 
 .raky {
-	font-family: 'AmiriWeb';
+	font-family: 'raky';
 }
 
 /************[ Content ]***************/
@@ -12,7 +12,7 @@
 }
 
 .suraHeader{
-    font-family: "AmiriWeb",Traditional Arabic;
+    font-family: "raky",Traditional Arabic;
 	font-weight: normal;
     text-align: center;
     font-size: 190% ;
@@ -24,7 +24,7 @@
 }
 .sname{
     display:inline;
-    font-family: "AmiriWeb",Traditional Arabic;
+    font-family: "raky",Traditional Arabic;
 	font-weight: normal;
     text-align: center;
     font-size: 190% ;
@@ -44,8 +44,8 @@
 }
 .iAya {
     display:inline;
-    font-size: 28px ;
-    font-family: "AmiriWeb",Traditional Arabic;
+    font-size: 38px ;
+    font-family: "ArType",Traditional Arabic;
 	font-weight: normal;
     line-height:42pt !important ;
     margin:  5px;
@@ -70,7 +70,7 @@
 }
 .ayaCtr{
     /*position:relative;*/
-	font-family: "AmiriWeb","Times New Roman";
+	font-family: "Traditional Arabic","Times New Roman";
     display: inline;
     font-size: 110% !important ;
 	font-weight: normal;
