@@ -8,6 +8,7 @@
 	
 	<link rel="stylesheet" href="theme/raky/css/bootstrap.rtl.css" type="text/css" />
     <link rel="stylesheet" href="theme/raky/forkan.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="public/amiri/amiri.css" media="all" type="text/css"/>
 	
 	<!-- styles needed by jScrollPane - include in your own sites -->
 	<link type="text/css" href="theme/raky/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
@@ -104,6 +105,7 @@
       }
       body {
         padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+        font-family: "AmiriWeb";
       }
       .container > footer p {
         text-align: center; /* center align it with the container */
@@ -131,7 +133,7 @@
         background-color: #f5f5f5;
         padding: 20px 20px 10px;
         margin: -20px -20px 20px;
-    font-family: "ArType";
+    font-family: "AmiriWeb";
     font-size: 180%;
       }
 
@@ -171,11 +173,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.php" style="width: 80px;height: 20px;background:url(forkan.png) center center no-repeat;"></a>
+          <a class="brand" href="#" style="width: 80px;height: 20px;background:url(forkan.png) center center no-repeat;"></a>
 
           <div class="nav-collapse">
             <ul class="nav">
-				<li class="active"><a href="/" data-placement="below" rel="twipsy" title="الصفحة الرئيسية">الرئيسية</a></li>
+				<li class="active"><a href="#" data-placement="below" rel="twipsy" title="الصفحة الرئيسية">الرئيسية</a></li>
 				<li><a href="#about" data-placement="below" rel="twipsy" title="من نحن">من نحن</a></li>
 				<li><a href="#contact" data-placement="below" rel="twipsy" title="إتصل بنا">وصال</a></li>
 				<li class="dropdown">

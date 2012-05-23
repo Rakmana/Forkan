@@ -56,7 +56,7 @@ $(function(){
 	// index
 	idAttribute: "yid",
     initialize: function() {
-	  if(_.isUndefined(this.get('yid'))){ 
+	  if(_.isUndefined(this.get('yid'))){
 		//this.destroy();
 		//alert('empty');
       }
@@ -825,7 +825,7 @@ var Forkan = new AppRouter();
 
 	Forkan.init();
     Forkan.view = new AppView;
-
+ Forkan.Su
 	
 	//var header = new HeaderView();
   // Finally, we kick things off by creating the **App**.
